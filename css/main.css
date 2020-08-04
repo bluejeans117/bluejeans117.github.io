@@ -152,13 +152,17 @@ main {
   padding: 4rem;
   min-height: calc(100vh-60px); }
   main .icons {
-    margin-top: 1rem; }
-    main .icons a {
-      padding: 0.4rem; }
-      main .icons a:hover {
-        color: #1DA1F2;
-        transition: all 0.5s ease-out; }
-  main#home {
+  margin-top: 1rem; }
+  main .icons a {
+  padding: 0.4rem; }
+    main .icons a:hover {
+      color: #cc0000;
+      transition: all 0.5s ease-out; }
+  main .bio a:hover {
+    color: #ff2800;
+    transition: all 0.5s ease-out;}
+  
+main#home {
     overflow: hidden; }
     main#home h1 {
       margin-top: 20vh; }
@@ -224,9 +228,14 @@ main {
   border: 0;
   text-align: center;
   margin-bottom: 0.3rem; }
-  .btn:hover, .btn-dark:hover, .btn-light:hover {
+  .btn:hover, .btn-light:hover {
     background: #ff2800;
-    color: #000; }
+    color: #000;
+    transition: all 0.5s ease-out; }
+  .btn-dark:hover {
+    background: #f5c52c;
+    color: #000;
+    transition: all 0.5s ease-out; }
 
 .btn-dark {
   background: black;
