@@ -120,21 +120,20 @@ body {
     height: 100%;
     background: rgba(68, 68, 68, 0.9); }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   margin: 0;
   font-weight: 400; }
-  h1.lg-heading,
-  h2.lg-heading,
-  h3.lg-heading {
+  h1.lg-heading, h2.lg-heading, h3.lg-heading {
     font-size: 6rem; }
-  h1.sm-heading,
-  h2.sm-heading,
-  h3.sm-heading {
+  h1.sm-heading, h2.sm-heading, h3.sm-heading {
     margin-bottom: 2rem;
     padding: 0.2rem 1rem;
     background: rgba(73, 73, 73, 0.5); }
+  h2.blog-num {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    background: rgba(73, 73, 73, 0.5);}
 
 a {
   color: #fff;
@@ -190,6 +189,52 @@ main#home {
     background: #515151;
     border-bottom: #ff2800 5px solid;
     padding: 0.5rem; }
+
+.blog {
+  display: grid;
+  grid-template-areas: "para image";
+  grid-template-columns: 3fr 2fr;
+  gap: 30px; 
+  padding-bottom: 2rem; }
+  .blog .image {
+    grid-area: image;
+    margin: auto;
+    border-radius: 50%;
+    border: #ffffff 3px solid; }
+  .blog .para {
+    grid-area: para;
+    font-size: 1rem; }
+
+.alt-blog {
+  display: grid;
+  grid-template-areas: "image para";
+  grid-template-columns: 2fr 4fr;
+  gap: 30px;
+  padding-bottom: 2rem; }
+  .alt-blog .image {
+      grid-area: image;
+      margin: auto;
+      border-radius: 50%;
+      border: #ffffff 3px solid; }
+  .alt-blog .para {
+      grid-area: para;
+      font-size: 1rem; }
+
+.comp {
+  display: grid;
+  grid-template-areas: "col1 col2 col3";
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-bottom: 2rem; }
+  .comp .col1 {
+    grid-area: col1;
+    font-size: 1rem;}
+  .comp .col2 {
+    grid-area: col2;
+    font-size: 1rem;}
+  .comp .col3 {
+    grid-area: col3;
+    font-size: 1rem;}
 
 .projects {
   display: grid;
@@ -302,6 +347,14 @@ footer .icons i:hover {
   .about-info {
     grid-template-areas: "bioimage" "bio" "job1" "job2" "job3";
     grid-template-columns: 1fr; }
+  .blog, .alt-blog {
+    grid-template-areas: "para" "image";
+    grid-template-columns: 1fr; }
+    .alt-blog .image {
+      grid-area: image;
+      margin: auto;
+      border-radius: 50%;
+      border: #ffffff 3px solid; }
   .projects {
     grid-template-columns: repeat(2, 1fr); } }
 
