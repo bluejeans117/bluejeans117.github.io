@@ -33,10 +33,11 @@ export default function Home() {
             Vishnu <span className='text-accent'>Rajesh</span>
           </h1>
           <h2 className='mt-4 text-center text-xl text-foreground/60'>
-            Android Developer. Full Stack. Programmer. Cloud Computing.
-            SysAdmin.
+            Solutions Architect • Full Stack Engineer • Cloud Developer
             <br />
-            Gamer. Procrastinator.
+            Android Dev • SysAdmin • Blockchain Engineer
+            <br />
+            Open Source Contributor • Tech Enthusiast • Aviation Geek
           </h2>
 
           <div className='mt-12 flex gap-8'>
