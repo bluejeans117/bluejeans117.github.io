@@ -3,38 +3,38 @@ import { Nav } from '@/components/nav';
 const socials = [
   {
     name: 'Email',
-    icon: 'fa fa-envelope',
+    icon: 'fa-solid fa-envelope',
     link: 'mailto:vishnurajesh45@gmail.com',
     title: 'Mail',
   },
   {
     name: 'Telegram',
-    icon: 'fa-telegram',
+    icon: 'fa-brands fa-telegram',
     link: 'https://t.me/bluejeans117',
     title: 'Telegram',
   },
   {
     name: 'Instagram',
-    icon: 'fa-instagram',
+    icon: 'fa-brands fa-instagram',
     link: 'https://instagram.com/vishnu_kapadia',
     title: 'Instagram',
   },
   {
-    name: 'Twitter',
-    icon: 'fa-twitter',
-    link: 'https://twitter.com/bluejeans117',
-    title: 'Twitter',
+    name: 'X',
+    icon: 'fa-brands fa-x-twitter',
+    link: 'https://x.com/bluejeans117',
+    title: 'X',
   },
   {
     name: 'Facebook',
-    icon: 'fa-facebook',
+    icon: 'fa-brands fa-facebook',
     link: 'https://www.facebook.com/bluejeans117/',
     title: 'Facebook',
   },
   {
     name: 'Discord',
-    icon: 'fa-discord',
-    link: '#',
+    icon: 'fa-brands fa-discord',
+    link: 'https://discordapp.com/users/483237249945698305',
     title: 'Discord: bluejeans117#0888',
   },
 ];
@@ -61,7 +61,7 @@ export default function Contact() {
               rel='noopener noreferrer'
               title={social.title}
             >
-              <i className={`fab fa-2x ${social.icon}`} />
+              <i className={`fa-2x ${social.icon}`} />
               <span className='sr-only'>{social.name}</span>
             </a>
           ))}

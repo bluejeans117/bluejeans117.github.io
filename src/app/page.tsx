@@ -4,7 +4,7 @@ const socials = [
   {
     name: 'LinkedIn',
     icon: 'fa-linkedin',
-    link: 'https://www.linkedin.com/in/vishnu-r-28101016b/',
+    link: 'https://www.linkedin.com/in/vishnurajesh/',
   },
   {
     name: 'GitHub',
@@ -45,7 +45,7 @@ export default function Home() {
               <a
                 key={social.name}
                 href={social.link}
-                className='group relative flex h-12 w-12 items-center justify-center rounded-full border border-accent/20 bg-card transition-colors hover:bg-accent/10'
+                className='group relative flex h-16 w-16 items-center justify-center rounded-full border border-accent/20 bg-card transition-colors hover:bg-accent/10'
                 target='_blank'
                 rel='noopener noreferrer'
               >
