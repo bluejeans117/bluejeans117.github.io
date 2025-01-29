@@ -7,8 +7,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Portfolio | BlueJeans117',
-  description: 'Personal portfolio showcasing my work and skills',
+  title: 'Portfolio | Vishnu Rajesh',
+  description: 'Solutions Architect and Software Engineer',
 };
 
 export default function RootLayout({
@@ -26,15 +26,28 @@ export default function RootLayout({
           crossOrigin='anonymous'
         />
       </head>
-      <body className={`${inter.className} flex min-h-screen flex-col`}>
+      <body
+        className={`${inter.className} relative min-h-screen bg-background/95 antialiased`}
+      >
+        <div className='fixed inset-0 -z-10'>
+          <div
+            className='absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-25'
+            style={{
+              backgroundImage: "url('/img/background.jpg')",
+              backgroundBlendMode: 'soft-light',
+            }}
+          />
+        </div>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Footer />
+          <div className='relative z-0'>
+            {children}
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
