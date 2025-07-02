@@ -10,6 +10,7 @@ const links = [
   { href: '/about', label: 'About' },
   { href: '/experience', label: 'Experience' },
   { href: '/work', label: 'Work' },
+  { href: '/flexdoc', label: 'FlexDoc' },
   { href: '/contact', label: 'Contact' },
   { href: 'https://blog.realogs.in/', label: 'Blog', external: true },
 ];
