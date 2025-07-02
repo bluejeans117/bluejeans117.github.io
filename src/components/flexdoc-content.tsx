@@ -17,6 +17,7 @@ import {
   AlignLeft,
   FileText,
 } from 'lucide-react';
+import Image from 'next/image';
 
 export function FlexDocContent() {
   const { theme, systemTheme } = useTheme();
@@ -56,7 +57,7 @@ export function FlexDocContent() {
 
           {mounted && (
             <>
-              <img
+              <Image
                 src={
                   currentTheme === 'dark'
                     ? '/img/flexdoc/flexdoc-dark.png'
@@ -319,7 +320,7 @@ app.listen(3000, () => {
 
             {mounted && (
               <div>
-                <img
+                <Image
                   src={
                     currentTheme === 'dark'
                       ? '/img/flexdoc/flexdoc-get-dark.png'
@@ -393,7 +394,7 @@ app.listen(3000, () => {
           <div className='bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md'>
             {mounted && (
               <div>
-                <img
+                <Image
                   src={
                     currentTheme === 'dark'
                       ? '/img/flexdoc/flexdoc-get-code-dark.png'

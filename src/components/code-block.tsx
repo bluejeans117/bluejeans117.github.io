@@ -2,15 +2,37 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-// We need to import Prism only on the client side
-let Prism: any;
+// Import CSS for Prism theme - use a more TypeScript-friendly approach
+// The CSS import is moved to a client-side only context
+
+// Define a type for Prism
+type PrismType = typeof import('prismjs');
+
+// Use dynamic imports for client-side only code
+let Prism: PrismType | undefined;
+
+// Initialize Prism on the client side only
 if (typeof window !== 'undefined') {
-  Prism = require('prismjs');
-  require('prismjs/components/prism-javascript');
-  require('prismjs/components/prism-typescript');
-  require('prismjs/components/prism-jsx');
-  require('prismjs/components/prism-tsx');
-  require('prismjs/themes/prism-tomorrow.css');
+  // Import CSS for Prism theme in client-side context
+  import('prismjs/themes/prism-tomorrow.css').catch((err) =>
+    console.error('Failed to load Prism CSS:', err)
+  );
+
+  // Using import() instead of require()
+  import('prismjs')
+    .then((module) => {
+      Prism = module.default;
+      // Import language components
+      Promise.all([
+        import('prismjs/components/prism-javascript'),
+        import('prismjs/components/prism-typescript'),
+        import('prismjs/components/prism-jsx'),
+        import('prismjs/components/prism-tsx'),
+      ]).catch((err) =>
+        console.error('Failed to load Prism language components:', err)
+      );
+    })
+    .catch((err) => console.error('Failed to load Prism:', err));
 }
 
 interface CodeBlockProps {
@@ -31,8 +53,27 @@ export function CodeBlock({ code, language, filename }: CodeBlockProps) {
 
   useEffect(() => {
     // This ensures Prism is available in the browser environment
-    if (typeof window !== 'undefined' && codeRef.current && Prism) {
-      Prism.highlightElement(codeRef.current);
+    if (typeof window !== 'undefined' && codeRef.current) {
+      // Dynamically load Prism if it's not already loaded
+      if (!Prism) {
+        import('prismjs').then((module) => {
+          Prism = module.default;
+          // Import language components
+          Promise.all([
+            import('prismjs/components/prism-javascript'),
+            import('prismjs/components/prism-typescript'),
+            import('prismjs/components/prism-jsx'),
+            import('prismjs/components/prism-tsx'),
+          ]).then(() => {
+            if (codeRef.current) {
+              Prism?.highlightElement(codeRef.current);
+            }
+          });
+        });
+      } else {
+        // If Prism is already loaded, highlight immediately
+        Prism.highlightElement(codeRef.current);
+      }
     }
   }, [code, language]);
 
@@ -68,4 +109,3 @@ export function CodeBlock({ code, language, filename }: CodeBlockProps) {
     </div>
   );
 }
-
