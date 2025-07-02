@@ -48,11 +48,19 @@ export function FlexDocContent() {
             <h1 className='text-3xl font-bold'>FlexDoc</h1>
           </div>
 
-          <p className='text-gray-700 dark:text-gray-300 mb-8'>
+          <p className='text-gray-700 dark:text-gray-300 mb-4'>
             FlexDoc is a beautiful, highly customizable OpenAPI documentation
-            generator that can be easily integrated into backend applications.
-            It provides a modern, interactive interface for API documentation
-            with advanced features and customization options.
+            generator designed to transform complex API specifications into intuitive, 
+            interactive documentation. Unlike traditional API documentation tools that produce 
+            static and often confusing interfaces, FlexDoc creates a developer-friendly experience 
+            that makes API exploration and integration straightforward.
+          </p>
+          
+          <p className='text-gray-700 dark:text-gray-300 mb-8'>
+            Built with modern web technologies and designed with both API consumers and providers in mind, 
+            FlexDoc bridges the gap between technical accuracy and usability. Whether you're building 
+            a public API, internal microservices, or documenting legacy systems, FlexDoc adapts to your 
+            specific documentation needs with minimal configuration.
           </p>
 
           {mounted && (
@@ -65,6 +73,8 @@ export function FlexDocContent() {
                 }
                 alt='FlexDoc UI'
                 className='w-full h-auto rounded-lg shadow-md mb-4'
+                width={1000}
+                height={600}
               />
               <div className='flex items-center justify-end gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8'>
                 <span className='flex items-center gap-2'>
@@ -328,6 +338,8 @@ app.listen(3000, () => {
                   }
                   alt='FlexDoc Get Started'
                   className='w-full h-auto rounded-lg'
+                  width={1000}
+                  height={600}
                 />
               </div>
             )}
@@ -402,6 +414,8 @@ app.listen(3000, () => {
                   }
                   alt='FlexDoc Code Example'
                   className='w-full h-auto rounded-lg'
+                  width={1000}
+                  height={600}
                 />
               </div>
             )}
@@ -411,4 +425,3 @@ app.listen(3000, () => {
     </div>
   );
 }
-
