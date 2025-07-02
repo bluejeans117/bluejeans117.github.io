@@ -4,7 +4,7 @@ declare module 'prismjs/components/prism-typescript' {}
 declare module 'prismjs/components/prism-jsx' {}
 declare module 'prismjs/components/prism-tsx' {}
 declare module 'prismjs/themes/prism-tomorrow.css' {
-  const content: any;
-  export default content;
+  const styles: Record<string, string>;
+  export default styles;
 }
 
