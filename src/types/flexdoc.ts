@@ -65,6 +65,7 @@ export interface Response {
 
 export interface MediaType {
   schema?: Schema;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   example?: any;
   examples?: Record<string, Example>;
 }
@@ -72,6 +73,7 @@ export interface MediaType {
 export interface Example {
   summary?: string;
   description?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
 }
 
@@ -81,7 +83,9 @@ export interface Schema {
   properties?: Record<string, Schema>;
   items?: Schema;
   required?: string[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   enum?: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   example?: any;
   $ref?: string;
   allOf?: Schema[];
@@ -101,6 +105,7 @@ export interface SecurityScheme {
   bearerFormat?: string;
   name?: string;
   in?: 'query' | 'header' | 'cookie';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   flows?: any;
   openIdConnectUrl?: string;
 }
@@ -137,14 +142,12 @@ export interface FlexDocOptions {
   showMutatedRequest?: boolean;
   sortTagsAlphabetically?: boolean;
   maxDisplayedTags?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   operationsSorter?: 'alpha' | 'method' | ((a: any, b: any) => number);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tagsSorter?: 'alpha' | ((a: any, b: any) => number);
   deepLinking?: boolean;
-  displayRequestDuration?: boolean;
   defaultModelExpandDepth?: number;
-  defaultModelsExpandDepth?: number;
-  showExtensions?: boolean;
-  showCommonExtensions?: boolean;
   useUnsafeMarkdown?: boolean;
 }
 

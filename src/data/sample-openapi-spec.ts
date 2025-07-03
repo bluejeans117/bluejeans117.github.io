@@ -1,4 +1,6 @@
-export const sampleEcommerceSpec = {
+import { OpenAPISpec } from '@/types/flexdoc';
+
+export const sampleEcommerceSpec: OpenAPISpec = {
   openapi: '3.0.0',
   info: {
     title: 'E-commerce API',
@@ -109,7 +111,6 @@ export const sampleEcommerceSpec = {
             schema: {
               type: 'integer',
               minimum: 1,
-              default: 1,
               example: 1,
             },
           },
@@ -122,7 +123,6 @@ export const sampleEcommerceSpec = {
               type: 'integer',
               minimum: 1,
               maximum: 100,
-              default: 20,
               example: 20,
             },
           },
