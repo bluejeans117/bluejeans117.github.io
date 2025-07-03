@@ -15,6 +15,7 @@ import {
   Settings,
   FileText,
   Code,
+  Play,
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -428,18 +429,28 @@ const config = {
                 width={1000}
                 height={600}
               />
-              <div className='flex items-center justify-end gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8'>
-                <span className='flex items-center gap-2'>
-                  {currentTheme === 'dark' ? (
-                    <>
-                      <Moon className='h-5 w-5' /> Currently viewing dark theme
-                    </>
-                  ) : (
-                    <>
-                      <Sun className='h-5 w-5' /> Try switching to dark mode
-                    </>
-                  )}
-                </span>
+              <div className='flex items-center justify-between mb-8'>
+                <div className='flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400'>
+                  <span className='flex items-center gap-2'>
+                    {currentTheme === 'dark' ? (
+                      <>
+                        <Moon className='h-5 w-5' /> Currently viewing dark
+                        theme
+                      </>
+                    ) : (
+                      <>
+                        <Sun className='h-5 w-5' /> Try switching to dark mode
+                      </>
+                    )}
+                  </span>
+                </div>
+                <Link
+                  href='/flexdoc/demo'
+                  className='inline-flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors text-sm font-medium'
+                >
+                  <Play size={16} />
+                  Try Live Demo
+                </Link>
               </div>
             </>
           )}
@@ -585,6 +596,13 @@ const config = {
           >
             <i className='fa-brands fa-npm text-xl'></i>
             Install from npm
+          </Link>
+          <Link
+            href='/flexdoc/demo'
+            className='inline-flex items-center gap-3 px-6 py-3 text-lg font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors shadow-md'
+          >
+            <Play size={20} />
+            Try Live Demo
           </Link>
         </div>
 
@@ -951,4 +969,3 @@ const config = {
     </div>
   );
 }
-
