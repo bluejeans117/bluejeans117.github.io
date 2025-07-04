@@ -48,10 +48,10 @@ export function FlexDocContent() {
       title: 'React Component',
       language: 'typescript',
       code: `// Install the client package
-npm install @flexdoc/client
+npm install @bluejeans/flexdoc-client
 
 // In your React component
-import { FlexDoc } from '@flexdoc/client';
+import { FlexDoc } from '@bluejeans/flexdoc-client';
 import { openApiSpec } from './your-spec';
 
 function App() {
@@ -68,7 +68,7 @@ function App() {
       title: 'Next.js Integration',
       language: 'typescript',
       code: `// pages/api-docs.tsx
-import { FlexDoc } from '@flexdoc/client';
+import { FlexDoc } from '@bluejeans/flexdoc-client';
 import { openApiSpec } from '../lib/api-spec';
 
 export default function ApiDocs() {
@@ -367,14 +367,6 @@ const config = {
     showOpenAPISpec: true,
     poweredBy: true
   },
-  
-  // Advanced options
-  presets: [
-    require('@flexdoc/preset-api-platform')
-  ],
-  plugins: [
-    require('@flexdoc/plugin-analytics')
-  ]
 };`,
       filename: 'flexdoc.config.js',
     },
@@ -653,7 +645,7 @@ const config = {
                   Implementation requires just a few lines of code after
                   installing the{' '}
                   <code className='bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded'>
-                    @flexdoc/client
+                    @bluejeans/flexdoc-client
                   </code>{' '}
                   package.
                 </p>
