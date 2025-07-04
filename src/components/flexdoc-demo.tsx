@@ -58,7 +58,7 @@ export function FlexDocDemo() {
             </div>
 
             {/* FlexDoc Component */}
-            <div className='h-[1025px]'>
+            <div className='h-[800px] overflow-auto'>
               <FlexDocClientWrapper theme={systemTheme ?? 'light'} />
             </div>
           </div>
