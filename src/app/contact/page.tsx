@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <main className='flex min-h-screen flex-col'>
       <Nav />
-      <div className='container flex flex-1 flex-col items-center justify-center py-16'>
+      <div className='container flex flex-1 flex-col items-center justify-center px-4 py-16 text-center'>
         <h1 className='text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl'>
           Contact <span className='text-accent'>Me</span>
         </h1>
@@ -51,17 +51,17 @@ export default function Contact() {
           You can reach me on these platforms...
         </h2>
 
-        <div className='mt-12 flex flex-wrap justify-center gap-8'>
+        <div className='mt-12 flex max-w-xl flex-wrap justify-center gap-5 sm:gap-8'>
           {socials.map((social) => (
             <a
               key={social.name}
               href={social.link}
-              className='group relative flex h-16 w-16 items-center justify-center rounded-full border border-accent/20 bg-card transition-colors hover:bg-accent/10'
-              target='_blank'
-              rel='noopener noreferrer'
+              className='group relative flex h-16 w-16 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition hover:-translate-y-1 hover:border-accent/40 hover:bg-accent/10 hover:text-accent'
+              target={social.name === 'Email' ? undefined : '_blank'}
+              rel={social.name === 'Email' ? undefined : 'noopener noreferrer'}
               title={social.title}
             >
-              <i className={`fa-2x ${social.icon}`} />
+              <i className={`fa-2x ${social.icon}`} aria-hidden='true' />
               <span className='sr-only'>{social.name}</span>
             </a>
           ))}
