@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Play, Settings } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Play, Settings2, Sparkles, UploadCloud } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { FlexDocClientWrapper } from './flexdoc-client-wrapper';
 
@@ -11,124 +10,65 @@ export function FlexDocDemo() {
 
   return (
     <div className='min-h-screen'>
-      <div className='container mx-auto px-4 py-8'>
-        <div className='max-w-7xl mx-auto'>
-          {/* Header */}
-          <div className='mb-8'>
-            <Link
-              href='/flexdoc'
-              className={`inline-flex items-center gap-2 text-sm ${
-                isDark ? 'text-blue-400' : 'text-blue-600'
-              } hover:underline mb-4`}
-            >
-              <ArrowLeft size={16} />
-              Back to FlexDoc Overview
-            </Link>
+      <div className='container mx-auto max-w-[1500px] px-3 py-8 sm:px-4 sm:py-10'>
+        <div className='mb-7'>
+          <a href='/flexdoc' className='mb-5 inline-flex items-center gap-2 text-sm text-blue-600 hover:underline dark:text-blue-300'>
+            <ArrowLeft size={16} /> Back to FlexDoc 2.0
+          </a>
 
-            <div className='flex items-center gap-3 mb-4'>
-              <div className='bg-green-500 p-2 rounded-md'>
-                <Play className='text-white' size={24} />
+          <div className='flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between'>
+            <div className='max-w-3xl'>
+              <div className='mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300'>
+                <Sparkles size={14} /> Live package: @bluejeans/flexdoc-client 2.0.2
               </div>
-              <h1
-                className={`text-3xl font-bold ${
-                  isDark ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                FlexDoc Live Demo
-              </h1>
+              <h1 className='text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>FlexDoc live API explorer</h1>
+              <p className='mt-3 text-sm leading-6 text-foreground/62 sm:text-base'>
+                Browse the sample OpenAPI document, open an operation, edit request inputs, use Try It and switch between generated cURL, JavaScript, Python, Go and Java request samples.
+              </p>
             </div>
-
-            <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'} mb-6`}>
-              Experience FlexDoc in action with this interactive demonstration.
-              This demo showcases how FlexDoc transforms OpenAPI specifications
-              into beautiful, interactive API documentation.
-            </p>
-          </div>
-
-          {/* Demo Container */}
-          <div
-            className={`${
-              isDark ? 'bg-gray-800' : 'bg-white'
-            } rounded-lg shadow-lg border ${
-              isDark ? 'border-gray-700' : 'border-gray-200'
-            } overflow-hidden`}
-          >
-            <div
-              className={`${
-                isDark ? 'bg-gray-800' : 'bg-gray-50'
-              } px-6 py-3 border-b ${
-                isDark ? 'border-gray-700' : 'border-gray-200'
-              }`}
-            >
-              <div className='flex items-center gap-2'>
-                <div className='flex gap-2'>
-                  <div className='w-3 h-3 rounded-full bg-red-500'></div>
-                  <div className='w-3 h-3 rounded-full bg-yellow-500'></div>
-                  <div className='w-3 h-3 rounded-full bg-green-500'></div>
-                </div>
-                <span
-                  className={`text-sm ${
-                    isDark ? 'text-gray-300' : 'text-gray-700'
-                  } ml-4`}
-                >
-                  FlexDoc Demo - E-commerce API Documentation
-                </span>
-                <div
-                  className={`ml-auto flex items-center gap-2 text-xs ${
-                    isDark ? 'text-gray-400' : 'text-gray-500'
-                  }`}
-                >
-                  <Settings size={14} />
-                  Theme: {resolvedTheme}
-                </div>
+            <div className='flex flex-col items-start gap-3 lg:items-end'>
+              <a href='/flexdoc/playground' className='inline-flex items-center gap-2 rounded-full border border-blue-500/25 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-500/15 dark:text-blue-300'>
+                <UploadCloud size={15} /> Try your own spec
+              </a>
+              <div className='inline-flex items-center gap-2 text-xs text-foreground/50'>
+                <Settings2 size={14} /> Theme follows this site: {resolvedTheme || 'system'}
               </div>
             </div>
-
-            {/* FlexDoc Component */}
-            <div className='h-[800px] overflow-auto'>
-              <FlexDocClientWrapper theme={isDark ? 'dark' : 'light'} />
-            </div>
           </div>
+        </div>
 
-          {/* Call to Action */}
-          <div className='mt-12 text-center'>
-            <h2
-              className={`text-2xl font-semibold mb-4 ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              Ready to use FlexDoc?
-            </h2>
-            <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'} mb-6`}>
-              Get started with FlexDoc in your project today and create
-              beautiful API documentation.
-            </p>
-            <div className='flex flex-wrap gap-4 justify-center'>
-              <Link
-                href='/flexdoc'
-                className='inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors'
-              >
-                View Documentation
-              </Link>
-              <Link
-                href='https://github.com/bluejeans117/flexdoc'
-                target='_blank'
-                className={`inline-flex items-center gap-2 px-6 py-3 border ${
-                  isDark
-                    ? 'border-gray-700 hover:bg-gray-800'
-                    : 'border-gray-200 hover:bg-gray-50'
-                } ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                } rounded-md transition-colors`}
-              >
-                <ExternalLink size={16} />
-                GitHub Repository
-              </Link>
+        <div className={`overflow-hidden rounded-2xl border shadow-2xl shadow-black/10 ${isDark ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-white'}`}>
+          <div className={`flex items-center gap-3 border-b px-4 py-3 ${isDark ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-slate-50'}`}>
+            <div className='flex gap-1.5' aria-hidden='true'>
+              <div className='h-2.5 w-2.5 rounded-full bg-red-400' />
+              <div className='h-2.5 w-2.5 rounded-full bg-amber-400' />
+              <div className='h-2.5 w-2.5 rounded-full bg-emerald-400' />
             </div>
+            <span className='truncate text-xs text-foreground/55'>FlexDoc 2.0.2 — sample API</span>
+          </div>
+          <div className='min-h-[760px] overflow-auto sm:h-[820px]'>
+            <FlexDocClientWrapper theme={isDark ? 'dark' : 'light'} />
+          </div>
+        </div>
+
+        <div className='mt-10 flex flex-col items-center justify-between gap-5 rounded-2xl border border-border bg-card/70 p-6 text-center sm:flex-row sm:text-left'>
+          <div>
+            <h2 className='font-semibold'>Use the same renderer in your own app.</h2>
+            <p className='mt-1 text-sm text-foreground/58'>React, Express, Fastify and NestJS packages are documented in the repository.</p>
+          </div>
+          <div className='flex flex-wrap justify-center gap-3'>
+            <a href='/flexdoc/playground' className='inline-flex items-center gap-2 rounded-full border border-blue-500/25 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-500/5 dark:text-blue-300'>
+              <UploadCloud size={15} /> Upload a spec
+            </a>
+            <a href='/flexdoc' className='inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold transition hover:border-blue-500/30'>
+              <Play size={15} /> Documentation
+            </a>
+            <a href='https://github.com/bluejeans117/flexdoc' target='_blank' rel='noopener noreferrer' className='inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:opacity-90'>
+              GitHub <ExternalLink size={14} />
+            </a>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

@@ -2,168 +2,104 @@ import { Nav } from '@/components/nav';
 
 const experience = [
   {
-    company: 'VaidhyaMegha Pvt Ltd',
-    location: 'Hyderabad, TG',
-    title: 'ATG Lead and Consultant – Software Developer 3',
-    period: 'Jan 2024 – Present',
+    company: 'Epsilon',
+    location: 'Bengaluru, India',
+    title: 'Senior Software Engineer — Backend',
+    period: 'Mar 2026 — Present',
+    summary:
+      'Backend and platform engineering across high-throughput ad-tech systems, with increasing ownership across services, reliability and production delivery.',
     highlights: [
-      {
-        project: 'Client B: Service Gateway',
-        points: [
-          'Designed and implemented a service gateway in Java for authentication, rate-limiting, and access management, reducing system response times by 25%.',
-          'Conducted multiple sessions on coding best practices, development pipelines, and tools (e.g., GitHub, Kubernetes, IDE extensions), improving team productivity by 40%.',
-        ],
-      },
-      {
-        project: 'Client C: Platform Migration',
-        points: [
-          'Led migration of a platform from Caspio to AWS using React, NodeJS, and MySQL, reducing costs by 70% while enhancing system reliability.',
-          'Introduced new system components like scheduled messaging services with no additional infrastructure costs.',
-          'Migrated payment management from in-house solutions to Stripe, minimizing financial risks and simplifying compliance.',
-          'Introduced Attribute-Based Access Control (ABAC) for precise user access control.',
-        ],
-      },
-      {
-        project: 'Internal Products',
-        points: [
-          'Refactored a multi-tenant SaaS platform into a service gateway plus foundational services written in Golang, improving modularity and scalability.',
-          'Developed internal frameworks for frontend (JavaScript) and backend (Python, GoLang) to integrate seamlessly with the service gateway, reducing developer effort by 50%.',
-        ],
-      },
+      'Own and drive backend work across multiple ad-stack components, from implementation through reviews, canaries, production rollout and follow-up.',
+      'Work with Kafka consumers, HBase-backed systems, AWS infrastructure and production observability at high message volumes.',
+      'Driving reliability and platform improvements including retry behavior, validation, alerting and cost/right-sizing work.',
+      'Growing toward end-to-end technical ownership and subject-matter expertise across core services.',
     ],
   },
   {
-    company: 'VaidhyaMegha Pvt Ltd',
-    location: 'Bengaluru, KA',
-    title: 'ATG Lead and Consultant – Software Developer 2',
-    period: 'Sept 2022 – Jan 2024',
+    company: 'Prauga Private Limited',
+    location: 'Bengaluru, India',
+    title: 'Co-founder & CTO',
+    period: '2024 — Present',
+    summary:
+      'Building products, developer infrastructure and software services with a small engineering team.',
     highlights: [
-      {
-        project: 'Client A: Doctor-Patient Interaction Platform',
-        points: [
-          'Led the development of a cross-platform application for doctor-patient interactions, improving system efficiency by 60%.',
-          'Introduced features for appointment scheduling, medical document sharing, and referrals.',
-        ],
-      },
-      {
-        project: 'Multi-Tenant SaaS Platform',
-        points: [
-          'Built a multi-tenant SaaS application to streamline internal product operations, reducing development effort by 40%.',
-        ],
-      },
-      {
-        project: 'Client B: Blockchain Implementation',
-        points: [
-          'Developed a fine-grained Role-Based Access Control (RBAC) and Attribute-Based Access Control (ABAC) system, enhancing data security and compliance.',
-          'Implemented a blockchain network with Kubernetes, increasing scalability and reducing deployment time by 50%.',
-          'Built private Golang libraries for smart contracts and API integrations, achieving a 30% reduction in integration time for new systems.',
-        ],
-      },
+      'Lead product and technology decisions across backend, mobile, cloud and infrastructure work.',
+      'Built and explored products spanning developer tooling, collaborative applications and Linux/Android platform work.',
+      'Created FlexDoc as an open-source OpenAPI documentation renderer and API explorer; FlexDoc 2.0 now uses one canonical renderer across React, Node integrations and Spring Boot.',
     ],
   },
   {
-    company: 'VaidhyaMegha Pvt Ltd',
-    location: 'Bengaluru, KA',
-    title: 'ATG Developer and Consultant – Software Developer 1',
-    period: 'Oct 2020 – Sept 2022',
+    company: 'Netsmart India',
+    location: 'Bengaluru, India',
+    title: 'Senior Software Engineer',
+    period: 'Aug 2025 — Mar 2026',
+    summary:
+      'Product engineering across web and backend systems in a healthcare technology environment.',
     highlights: [
-      {
-        project: 'Flutter Mobile App Development',
-        points: [
-          'Designed and developed a cross-platform mobile app for house recognition and classification using TensorFlow, improving classification accuracy by 85%.',
-        ],
-      },
-      {
-        project: 'Blockchain E-commerce Prototype',
-        points: [
-          'Built a blockchain-based e-commerce web app prototype for NFTs, reducing transaction times by 30% compared to traditional systems.',
-        ],
-      },
-      {
-        project: 'Automated Legal Will Generator',
-        points: [
-          'Led the development of a cross-platform, automated legal will generation application, achieving a 50% reduction in manual documentation time for users.',
-        ],
-      },
-      {
-        project: 'Healthcare Platform Development',
-        points: [
-          'Created a cross-platform application to facilitate interactions between doctors and patients, enabling appointment scheduling, referrals, and secure sharing of sensitive medical documents.',
-          'Reduced administrative errors by 40% and improved data security compliance.',
-        ],
-      },
+      'Worked across application defects and product delivery in a large healthcare software codebase.',
+      'Contributed across frontend and backend concerns while operating within enterprise release and quality processes.',
+    ],
+  },
+  {
+    company: 'VaidhyaMegha / Samyama.ai',
+    location: 'Bengaluru & Hyderabad, India',
+    title: 'Software Engineer → Lead / Consultant',
+    period: 'Oct 2020 — Aug 2024',
+    summary:
+      'Progressed from software engineer to technical lead/consultant while building client systems, internal platforms and cloud-native services.',
+    highlights: [
+      'Designed Java and Go services for authentication, access management and service-gateway patterns.',
+      'Led platform migrations to AWS and worked across React, Node.js, MySQL, Kubernetes and cloud infrastructure.',
+      'Built multi-tenant SaaS foundations and internal Go/Python/JavaScript integration frameworks that reduced repeated development work.',
+      'Implemented Hyperledger Fabric infrastructure and fine-grained RBAC/ABAC systems for sensitive-data use cases.',
+      'Led cross-platform product development using Flutter and mentored engineers through architecture, tooling and delivery practices.',
     ],
   },
 ];
-
-const contact = {
-  email: 'vishnurajesh45@gmail.com',
-  location: 'Bengaluru, KA',
-  linkedin: 'linkedin.com/in/vishnurajesh',
-};
 
 export default function Experience() {
   return (
     <div className='flex min-h-screen flex-col'>
       <Nav />
-      <main className='container mx-auto px-4 py-8'>
-        <div className='mb-8 flex flex-col items-center md:flex-row md:justify-between'>
-          <div>
-            <h1 className='text-4xl font-bold'>Professional Experience</h1>
-            <div className='mt-2 text-foreground/60'>
-              <p>{contact.location}</p>
-              <p>
-                <a
-                  href={`mailto:${contact.email}`}
-                  className='hover:text-accent'
-                >
-                  Email
-                </a>{' '}
-                •{' '}
-                <a
-                  href={`https://${contact.linkedin}`}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='hover:text-accent'
-                >
-                  LinkedIn
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
+      <main className='container mx-auto max-w-6xl px-4 py-12 sm:py-16'>
+        <header className='max-w-3xl'>
+          <div className='text-xs font-semibold uppercase tracking-[0.2em] text-accent'>Career</div>
+          <h1 className='mt-3 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl'>
+            Building systems, then owning what happens to them in production.
+          </h1>
+          <p className='mt-5 text-base leading-7 text-foreground/65 sm:text-lg'>
+            6+ years across backend engineering, product development, cloud infrastructure, distributed systems and technical leadership.
+          </p>
+        </header>
 
-        <div className='space-y-12'>
+        <div className='relative mt-14 space-y-5 before:absolute before:bottom-6 before:left-[7px] before:top-6 before:w-px before:bg-border sm:before:left-[11px]'>
           {experience.map((job, index) => (
-            <div
-              key={index}
-              className='rounded-lg border border-accent/20 bg-card p-6'
-            >
-              <div className='mb-4'>
-                <h3 className='text-xl font-semibold text-accent'>
-                  {job.title}
-                </h3>
-                <p className='text-foreground/60'>
-                  {job.company} | {job.location} | {job.period}
-                </p>
-              </div>
-              <div className='space-y-6'>
-                {job.highlights.map((highlight, hIndex) => (
-                  <div key={hIndex}>
-                    <h4 className='mb-2 font-medium text-accent/80'>
-                      {highlight.project}
-                    </h4>
-                    <ul className='list-inside list-disc space-y-2 text-foreground/80'>
-                      {highlight.points.map((point, pIndex) => (
-                        <li key={pIndex} className='pl-4'>
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
+            <article key={`${job.company}-${job.period}`} className='relative pl-8 sm:pl-10'>
+              <span className={`absolute left-0 top-7 h-4 w-4 rounded-full border-4 border-background sm:h-6 sm:w-6 ${index === 0 ? 'bg-emerald-500' : 'bg-accent/50'}`} />
+              <div className='glass-card rounded-2xl p-6 sm:p-7'>
+                <div className='flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between'>
+                  <div>
+                    <h2 className='text-xl font-semibold tracking-tight'>{job.title}</h2>
+                    <div className='mt-1 text-sm font-medium text-accent'>{job.company}</div>
                   </div>
-                ))}
+                  <div className='text-sm text-foreground/50 sm:text-right'>
+                    <div>{job.period}</div>
+                    <div>{job.location}</div>
+                  </div>
+                </div>
+
+                <p className='mt-5 max-w-4xl text-sm leading-6 text-foreground/65'>{job.summary}</p>
+
+                <ul className='mt-5 grid gap-2 text-sm leading-6 text-foreground/68'>
+                  {job.highlights.map((highlight) => (
+                    <li key={highlight} className='flex gap-3'>
+                      <span className='mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent/70' />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </main>

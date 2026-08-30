@@ -3,9 +3,9 @@ import { Nav } from '@/components/nav';
 import { FlexDocDemo } from '@/components/flexdoc-demo';
 
 export const metadata: Metadata = {
-  title: 'FlexDoc Live Demo - Interactive API Documentation',
+  title: 'FlexDoc 2.0 Live Demo | Try the API Explorer',
   description:
-    'Experience FlexDoc in action with this interactive demo showcasing beautiful API documentation generation.',
+    'Try FlexDoc 2.0 in the browser: navigate an OpenAPI reference, use the interactive Try It flow and inspect generated request code samples.',
 };
 
 export default function FlexDocDemoPage() {

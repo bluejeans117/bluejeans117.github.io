@@ -4,51 +4,46 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Vishnu Rajesh',
-  description: 'Solutions Architect and Software Engineer',
+  title: {
+    default: 'Vishnu Rajesh | Backend Engineer & Builder',
+    template: '%s | Vishnu Rajesh',
+  },
+  description:
+    'Senior backend software engineer, Co-founder & CTO at Prauga, and creator of FlexDoc. Building distributed systems, developer tooling and cloud-native products.',
+  keywords: [
+    'Vishnu Rajesh',
+    'backend engineer',
+    'Golang',
+    'distributed systems',
+    'OpenAPI',
+    'FlexDoc',
+    'developer tooling',
+    'Bengaluru',
+  ],
+  authors: [{ name: 'Vishnu Rajesh' }],
+  openGraph: {
+    type: 'website',
+    title: 'Vishnu Rajesh | Backend Engineer & Builder',
+    description:
+      'Backend engineer, product builder and creator of FlexDoc — an open-source OpenAPI documentation renderer and API explorer.',
+  },
   icons: {
     icon: [
-      {
-        url: '/img/favicon/favicon-16x16.png',
-        sizes: '16x16',
-        type: 'image/png',
-      },
-      {
-        url: '/img/favicon/favicon-32x32.png',
-        sizes: '32x32',
-        type: 'image/png',
-      },
+      { url: '/img/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/img/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/img/favicon/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
     ],
     apple: [
-      {
-        url: '/img/favicon/apple-touch-icon.png',
-        sizes: '180x180',
-        type: 'image/png',
-      },
-    ],
-    other: [
-      {
-        rel: 'android-chrome-192x192',
-        url: '/img/favicon/android-chrome-192x192.png',
-      },
-      {
-        rel: 'android-chrome-512x512',
-        url: '/img/favicon/android-chrome-512x512.png',
-      },
+      { url: '/img/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   manifest: '/site.webmanifest',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
       <head>
@@ -59,59 +54,14 @@ export default function RootLayout({
           crossOrigin='anonymous'
           referrerPolicy='no-referrer'
         />
-        <link
-          rel='icon'
-          type='image/png'
-          href='/img/favicon/favicon-16x16.png'
-          sizes='16x16'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          href='/img/favicon/favicon-32x32.png'
-          sizes='32x32'
-        />
-        <link
-          rel='icon'
-          type='image/x-icon'
-          href='/img/favicon/favicon.ico'
-          sizes='48x48'
-        />
-        <link
-          rel='apple-touch-icon'
-          type='image/png'
-          href='/img/favicon/apple-touch-icon.png'
-          sizes='180x180'
-        />
-        <link
-          rel='android-chrome-192x192'
-          href='/img/favicon/android-chrome-192x192.png'
-        />
-        <link
-          rel='android-chrome-512x512'
-          href='/img/favicon/android-chrome-512x512.png'
-        />
-        <link rel='manifest' href='/site.webmanifest' />
       </head>
-      <body
-        className={`${inter.className} relative min-h-screen bg-background/95 antialiased`}
-      >
-        <div className='fixed inset-0 -z-10'>
-          <div
-            className='absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-25'
-            style={{
-              backgroundImage: "url('/img/background.jpg')",
-              backgroundBlendMode: 'soft-light',
-            }}
-          />
+      <body className={`${inter.className} relative min-h-screen antialiased`}>
+        <div className='pointer-events-none fixed inset-0 -z-10 overflow-hidden' aria-hidden='true'>
+          <div className='absolute -left-32 -top-40 h-[520px] w-[520px] rounded-full bg-blue-500/[0.055] blur-3xl dark:bg-blue-400/[0.045]' />
+          <div className='absolute -right-32 top-[32%] h-[480px] w-[480px] rounded-full bg-violet-500/[0.045] blur-3xl dark:bg-violet-400/[0.035]' />
         </div>
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className='relative z-0'>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+          <div className='relative z-0 flex min-h-screen flex-col'>
             {children}
             <Footer />
           </div>
