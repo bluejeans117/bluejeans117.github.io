@@ -31,7 +31,7 @@ export function FlexDocPlayground() {
     setError(null);
     try {
       const text = await file.text();
-      const module = (await import('@bluejeans/flexdoc-client')) as unknown as ParserModule;
+      const module = (await import('@prauga/flexdoc-client')) as unknown as ParserModule;
       const parsed = await module.OpenAPIParser.parseSpec(text);
       setSpec(parsed);
       setFileName(file.name);
@@ -107,7 +107,7 @@ export function FlexDocPlayground() {
               <FileJson size={16} className='shrink-0 text-blue-600 dark:text-blue-300' />
               <span className='truncate'>{fileName}</span>
             </div>
-            <span className='text-xs text-foreground/45'>FlexDoc 2.0.2 · {isDark ? 'dark' : 'light'} theme</span>
+            <span className='text-xs text-foreground/45'>FlexDoc 2.1.0 · {isDark ? 'dark' : 'light'} theme</span>
           </div>
           <div className='min-h-[760px] overflow-auto sm:h-[820px]'>
             <FlexDocClientWrapper theme={isDark ? 'dark' : 'light'} spec={spec} title={fileName} />
