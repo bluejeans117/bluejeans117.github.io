@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
-import '@bluejeans/flexdoc-client/styles.css';
+import '@prauga/flexdoc-client/styles.css';
 import { sampleEcommerceSpec } from '@/data/sample-openapi-spec';
 
 type FlexDocRuntimeProps = {
@@ -24,7 +24,7 @@ type FlexDocRuntimeModule = {
 
 const FlexDoc = dynamic(
   () =>
-    import('@bluejeans/flexdoc-client').then(
+    import('@prauga/flexdoc-client').then(
       (mod) => (mod as unknown as FlexDocRuntimeModule).FlexDoc
     ),
   { ssr: false }
@@ -39,7 +39,7 @@ interface FlexDocClientWrapperProps {
 export function FlexDocClientWrapper({
   theme,
   spec = sampleEcommerceSpec,
-  title = 'FlexDoc 2.0 Demo API',
+  title = 'FlexDoc 2.1 Demo API',
 }: FlexDocClientWrapperProps) {
   return (
     <FlexDoc

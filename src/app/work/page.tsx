@@ -4,12 +4,12 @@ import { ArrowUpRight, Github, Layers3, PackageOpen, Smartphone, Wrench } from '
 const projects = [
   {
     title: 'FlexDoc',
-    label: 'Open source · Developer tooling',
+    label: 'Prauga · Open source developer tooling',
     description:
-      'A self-hosted OpenAPI documentation renderer and API explorer. FlexDoc 2.0 introduced one canonical renderer, OpenAPI 3.0/3.1 support, a real Try It flow, shared request/code generation and framework adapters.',
-    tech: ['TypeScript', 'React', 'OpenAPI', 'Node.js', 'Spring Boot'],
+      "Prauga's self-hosted OpenAPI documentation renderer and API explorer. FlexDoc 2.1 spans React, Node, Spring Boot, CLI/static export, Go, Python and Rust around one canonical renderer and request engine.",
+    tech: ['TypeScript', 'React', 'OpenAPI', 'CLI', 'Polyglot adapters'],
     href: '/flexdoc',
-    github: 'https://github.com/bluejeans117/flexdoc',
+    github: 'https://github.com/prauga/flexdoc',
     icon: Layers3,
   },
   {
