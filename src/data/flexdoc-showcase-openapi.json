@@ -1,0 +1,1205 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FlexDoc 2.2 Showcase API",
+    "version": "2.2.0",
+    "description": "Full-surface FlexDoc 2.2 showcase covering OpenAPI navigation and schemas, external references, server selection, all request serialization families, authentication, request bodies, Try It, response inspection, API Client handoff and generated code.",
+    "contact": {
+      "name": "Prauga",
+      "url": "https://github.com/prauga/flexdoc"
+    },
+    "license": {
+      "name": "AGPL-3.0-or-later",
+      "url": "https://www.gnu.org/licenses/agpl-3.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local example server"
+    },
+    {
+      "url": "https://{environment}.api.example.test/v1",
+      "description": "Variable server example",
+      "variables": {
+        "environment": {
+          "default": "staging",
+          "enum": [
+            "staging",
+            "canary",
+            "production"
+          ],
+          "description": "Deployment environment"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Pets",
+      "description": "JSON requests, path/query/header parameters and bearer auth"
+    },
+    {
+      "name": "Search",
+      "description": "Array and deep-object query serialization"
+    },
+    {
+      "name": "Forms",
+      "description": "Form-urlencoded and multipart request bodies"
+    },
+    {
+      "name": "Admin",
+      "description": "API-key and Basic authentication examples"
+    }
+  ],
+  "paths": {
+    "/pets": {
+      "get": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "List pets",
+        "description": "Exercises query arrays, deep-object filters, request headers, response headers and API-key authentication.",
+        "operationId": "listPets",
+        "x-owner": "developer-experience",
+        "x-stability": "stable",
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum results",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Pipe-delimited tags",
+            "style": "pipeDelimited",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": [
+                "friendly",
+                "adoptable"
+              ]
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Deep-object filter",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "available",
+                    "pending",
+                    "adopted"
+                  ]
+                },
+                "minAge": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          {
+            "name": "X-Trace-ID",
+            "in": "header",
+            "description": "Optional request trace identifier",
+            "schema": {
+              "type": "string",
+              "example": "trace-local-001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pets matching the supplied filters",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Cursor for the next page",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "pet-1",
+                    "name": "Miso",
+                    "status": "available",
+                    "age": 3,
+                    "tags": [
+                      "friendly"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Create a pet",
+        "description": "Exercises a required JSON body and Bearer authentication.",
+        "operationId": "createPet",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPet"
+              },
+              "example": {
+                "name": "Miso",
+                "age": 3,
+                "tags": [
+                  "friendly",
+                  "adoptable"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created pet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/pets/{petId}": {
+      "parameters": [
+        {
+          "name": "petId",
+          "in": "path",
+          "required": true,
+          "description": "Pet identifier",
+          "schema": {
+            "type": "string",
+            "example": "pet-1"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Get a pet",
+        "operationId": "getPet",
+        "responses": {
+          "200": {
+            "description": "Pet details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Patch a pet",
+        "operationId": "patchPet",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetPatch"
+              },
+              "example": {
+                "status": "adopted"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated pet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Search the catalog",
+        "operationId": "searchCatalog",
+        "parameters": [
+          {
+            "name": "terms",
+            "in": "query",
+            "style": "spaceDelimited",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": [
+                "small",
+                "friendly"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "name",
+                "age",
+                "status"
+              ],
+              "default": "name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "terms": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Create a session",
+        "operationId": "createSession",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "scope"
+                ],
+                "properties": {
+                  "scope": {
+                    "type": "string",
+                    "example": "pets:write"
+                  },
+                  "remember": {
+                    "type": "boolean",
+                    "default": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Session token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://session.api.example.test/v1",
+          "description": "Path-level server override"
+        }
+      ]
+    },
+    "/uploads": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Upload a pet photo",
+        "operationId": "uploadPhoto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Image file"
+                  },
+                  "caption": {
+                    "type": "string",
+                    "example": "Miso at the park"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Upload metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "https://uploads.api.example.test/v1",
+            "description": "Operation-level server override"
+          }
+        ]
+      }
+    },
+    "/advanced/{matrix}/{label}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Exercise advanced serialization",
+        "description": "Matrix and label path serialization, cookie input, OAuth/OpenID metadata, composed schemas and multiple response examples.",
+        "operationId": "advancedSerialization",
+        "x-owner": "platform-runtime",
+        "x-stability": "experimental",
+        "security": [
+          {
+            "oauth2": [
+              "pets:read"
+            ],
+            "openId": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "matrix",
+            "in": "path",
+            "required": true,
+            "style": "matrix",
+            "explode": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              }
+            },
+            "example": {
+              "x": 12,
+              "y": 8
+            }
+          },
+          {
+            "name": "label",
+            "in": "path",
+            "required": true,
+            "style": "label",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "example": [
+              "alpha",
+              "beta"
+            ]
+          },
+          {
+            "name": "session",
+            "in": "cookie",
+            "schema": {
+              "type": "string",
+              "example": "session-2-2"
+            },
+            "description": "Cookie parameter example."
+          },
+          {
+            "name": "facet",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/FlexibleFacet"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Advanced serialization result",
+            "headers": {
+              "X-FlexDoc-Surface": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "variant": {
+                      "$ref": "#/components/schemas/PetVariant"
+                    },
+                    "tree": {
+                      "$ref": "#/components/schemas/TreeNode"
+                    }
+                  }
+                },
+                "examples": {
+                  "cat": {
+                    "value": {
+                      "variant": {
+                        "id": "pet-2",
+                        "name": "Miso",
+                        "status": "available",
+                        "indoor": true
+                      },
+                      "tree": {
+                        "id": "node-root",
+                        "label": "Root",
+                        "children": []
+                      }
+                    }
+                  },
+                  "dog": {
+                    "value": {
+                      "variant": {
+                        "id": "pet-3",
+                        "name": "Pixel",
+                        "status": "pending",
+                        "trained": true
+                      },
+                      "tree": {
+                        "id": "node-root",
+                        "label": "Root",
+                        "children": [
+                          {
+                            "id": "node-child",
+                            "label": "Child",
+                            "children": []
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/external-record": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Resolve a bundled external schema",
+        "operationId": "externalRecord",
+        "responses": {
+          "200": {
+            "description": "Schema resolved from a bundled external document.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/x-flexdoc-external-documents/https:~1~1schemas.example.test~1shared.json/components/schemas/ExternalRecord"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deprecated": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Deprecated operation example",
+        "operationId": "deprecatedExample",
+        "deprecated": true,
+        "externalDocs": {
+          "description": "Migration guide",
+          "url": "https://github.com/prauga/flexdoc"
+        },
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/security-alternatives": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Exercise API-key locations and security alternatives",
+        "description": "Covers header/query/cookie API keys plus OpenAPI OR alternatives and an AND requirement.",
+        "operationId": "securityAlternatives",
+        "security": [
+          {
+            "apiKeyQuery": []
+          },
+          {
+            "apiKeyCookie": []
+          },
+          {
+            "bearerAuth": [],
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A satisfiable security alternative was applied."
+          }
+        }
+      }
+    },
+    "/serialization/{simple}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Exercise remaining parameter serialization",
+        "description": "Covers simple path serialization, form object explode=false and allowReserved query values.",
+        "operationId": "remainingSerialization",
+        "parameters": [
+          {
+            "name": "simple",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "example": [
+              "alpha",
+              "beta"
+            ]
+          },
+          {
+            "name": "coords",
+            "in": "query",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              }
+            },
+            "example": {
+              "x": 12,
+              "y": 8
+            }
+          },
+          {
+            "name": "redirect",
+            "in": "query",
+            "allowReserved": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://example.test/a/b?x=1&y=2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Serialized request echoed successfully."
+          }
+        }
+      }
+    },
+    "/pets/{petId}/notes": {
+      "parameters": [
+        {
+          "name": "petId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "pet-1"
+          }
+        }
+      ],
+      "post": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Create a note with referenced OpenAPI objects",
+        "operationId": "createPetNote",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceHeader"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PetNoteBody"
+        },
+        "responses": {
+          "201": {
+            "description": "Note created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "source": {
+                      "type": "string",
+                      "const": "portfolio-showcase"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Bearer token used for write operations"
+      },
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "Basic authentication used by the session example"
+      },
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "API key used by list operations"
+      },
+      "oauth2": {
+        "type": "oauth2",
+        "description": "OAuth2 metadata rendered by the documentation UI",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://auth.example.test/oauth/authorize",
+            "tokenUrl": "https://auth.example.test/oauth/token",
+            "scopes": {
+              "pets:read": "Read pets",
+              "pets:write": "Create and modify pets"
+            }
+          }
+        }
+      },
+      "openId": {
+        "type": "openIdConnect",
+        "openIdConnectUrl": "https://auth.example.test/.well-known/openid-configuration",
+        "description": "OpenID Connect discovery example."
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key",
+        "description": "Query API-key location covered by the canonical request builder."
+      },
+      "apiKeyCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "client_key",
+        "description": "Cookie API-key location covered by the canonical request builder."
+      }
+    },
+    "schemas": {
+      "Pet": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true,
+            "example": "pet-1"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "example": "Miso"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "pending",
+              "adopted"
+            ],
+            "example": "available"
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 0,
+            "example": 3
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "friendly",
+              "adoptable"
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "source": "showcase"
+            }
+          }
+        }
+      },
+      "NewPet": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PetPatch": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "pending",
+              "adopted"
+            ]
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "invalid_request"
+          },
+          "message": {
+            "type": "string",
+            "example": "The request could not be processed"
+          }
+        }
+      },
+      "TreeNode": {
+        "type": "object",
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "node-root"
+          },
+          "label": {
+            "type": "string",
+            "example": "Root"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TreeNode"
+            }
+          }
+        }
+      },
+      "Cat": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "indoor": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        ]
+      },
+      "Dog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "trained": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          }
+        ]
+      },
+      "PetVariant": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Cat"
+          },
+          {
+            "$ref": "#/components/schemas/Dog"
+          }
+        ],
+        "description": "oneOf combined with allOf inheritance."
+      },
+      "FlexibleFacet": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "CompatibilityVocabulary": {
+        "type": "object",
+        "properties": {
+          "nullableValue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": null
+          },
+          "fixedKind": {
+            "type": "string",
+            "const": "pet"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "compact",
+              "full"
+            ],
+            "default": "compact"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "nullableValue": null,
+          "fixedKind": "pet",
+          "mode": "compact",
+          "labels": {
+            "source": "showcase"
+          }
+        }
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Authentication is required",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "description": "Request validation failed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "TraceHeader": {
+        "name": "X-Trace-ID",
+        "in": "header",
+        "description": "Reusable referenced header parameter.",
+        "schema": {
+          "type": "string",
+          "example": "trace-ref-001"
+        }
+      }
+    },
+    "requestBodies": {
+      "PetNoteBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "note"
+              ],
+              "properties": {
+                "note": {
+                  "type": "string",
+                  "example": "Needs a quiet home"
+                },
+                "priority": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "low",
+                    "normal",
+                    "high",
+                    null
+                  ],
+                  "default": "normal"
+                },
+                "source": {
+                  "type": "string",
+                  "const": "portfolio-showcase"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-flexdoc-external-documents": {
+    "https://schemas.example.test/shared.json": {
+      "components": {
+        "schemas": {
+          "ExternalRecord": {
+            "type": "object",
+            "required": [
+              "source",
+              "value"
+            ],
+            "properties": {
+              "source": {
+                "type": "string",
+                "example": "external-document"
+              },
+              "value": {
+                "type": "string",
+                "example": "resolved by FlexDoc"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
