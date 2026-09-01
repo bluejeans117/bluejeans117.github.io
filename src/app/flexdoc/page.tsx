@@ -3,9 +3,9 @@ import { Nav } from '@/components/nav';
 import { FlexDocContent } from '@/components/flexdoc-content';
 
 export const metadata: Metadata = {
-  title: 'FlexDoc 2.1 by Prauga | OpenAPI Documentation & API Explorer',
+  title: 'FlexDoc 2.2 by Prauga | OpenAPI Documentation & API Explorer',
   description:
-    "FlexDoc is Prauga's open-source, self-hosted OpenAPI 3.0/3.1 documentation renderer and API explorer with Try It, code samples, CLI/static export and cross-language framework integrations.",
+    "FlexDoc is Prauga's open-source, self-hosted OpenAPI 3.0/3.1 documentation renderer and API explorer with Try It, API Client handoff, advanced request serialization, code samples, CLI/static export and cross-language framework integrations.",
 };
 
 export default function FlexDocPage() {

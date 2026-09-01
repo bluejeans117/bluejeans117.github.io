@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { FlexDocFeatureSurface } from './flexdoc-feature-surface';
 import {
   ArrowRight,
   Blocks,
@@ -30,6 +31,12 @@ const features = [
     title: 'A real Try It flow',
     description:
       'Edit parameters, bodies and authentication, choose servers, send the request and inspect the live response without leaving the docs.',
+  },
+  {
+    icon: Workflow,
+    title: 'Try It → API Client',
+    description:
+      'Snapshot the built OpenAPI request into an editable HTTP client with method, URL, query, headers, auth, body, custom servers and response inspection.',
   },
   {
     icon: Layers3,
@@ -65,6 +72,7 @@ const features = [
 
 const details = [
   'API key, Basic, Bearer and OAuth2/OpenID bearer request authentication',
+  'Standalone API Client editing with configured or arbitrary custom servers',
   'JSON, form-urlencoded and multipart request bodies',
   'deepObject, matrix, label, pipe/space-delimited and explode parameter semantics',
   'light/dark themes plus typed renderer configuration',
@@ -76,19 +84,19 @@ const integrations = [
   {
     title: 'React',
     description: 'Embed the canonical renderer directly in a React application.',
-    install: 'npm install @prauga/flexdoc-client@^2',
+    install: 'npm install @prauga/flexdoc-client@^2.2',
     code: `import { FlexDoc } from '@prauga/flexdoc-client';\nimport '@prauga/flexdoc-client/styles.css';\n\nexport function Docs({ spec }) {\n  return (\n    <FlexDoc\n      spec={spec}\n      theme="light"\n      options={{ tryIt: { enabled: true } }}\n    />\n  );\n}`,
   },
   {
     title: 'Express',
     description: 'Mount FlexDoc beside the API without creating a separate docs application.',
-    install: 'npm install @prauga/flexdoc-backend@^2',
+    install: 'npm install @prauga/flexdoc-backend@^2.2',
     code: `import express from 'express';\nimport { setupExpressFlexDoc } from '@prauga/flexdoc-backend';\n\nconst app = express();\n\nsetupExpressFlexDoc(app, {\n  path: '/docs',\n  specUrl: 'https://example.com/openapi.json',\n  options: { title: 'Example API' },\n});`,
   },
   {
     title: 'NestJS',
     description: 'Generate through @nestjs/swagger and serve it through the same FlexDoc renderer.',
-    install: 'npm install @prauga/flexdoc-backend@^2',
+    install: 'npm install @prauga/flexdoc-backend@^2.2',
     code: `import { setupNestFlexDoc } from '@prauga/flexdoc-backend';\n\nawait setupNestFlexDoc(app, {\n  path: '/docs',\n  options: { title: 'My API' },\n});`,
   },
 ];
@@ -97,49 +105,56 @@ const packageLinks = [
   {
     ecosystem: 'React',
     packageName: '@prauga/flexdoc-client',
-    version: '2.1.0',
+    version: '2.2.0',
     registry: 'npm',
     href: 'https://www.npmjs.com/package/@prauga/flexdoc-client',
   },
   {
     ecosystem: 'Node',
     packageName: '@prauga/flexdoc-backend',
-    version: '2.1.0',
+    version: '2.2.0',
     registry: 'npm',
     href: 'https://www.npmjs.com/package/@prauga/flexdoc-backend',
   },
   {
+    ecosystem: 'Core',
+    packageName: '@prauga/flexdoc-core',
+    version: '0.2.0',
+    registry: 'npm',
+    href: 'https://www.npmjs.com/package/@prauga/flexdoc-core',
+  },
+  {
     ecosystem: 'CLI',
     packageName: '@prauga/flexdoc-cli',
-    version: '0.1.0',
+    version: '0.2.0',
     registry: 'npm',
     href: 'https://www.npmjs.com/package/@prauga/flexdoc-cli',
   },
   {
     ecosystem: 'Java',
     packageName: 'com.prauga.flexdoc:flexdoc-spring-boot-starter',
-    version: '0.2.0',
+    version: '0.3.0',
     registry: 'Maven Central',
     href: 'https://central.sonatype.com/artifact/com.prauga.flexdoc/flexdoc-spring-boot-starter',
   },
   {
     ecosystem: 'Go',
     packageName: 'github.com/prauga/flexdoc/adapters/go',
-    version: '0.1.0',
+    version: '0.2.0',
     registry: 'pkg.go.dev',
     href: 'https://pkg.go.dev/github.com/prauga/flexdoc/adapters/go',
   },
   {
     ecosystem: 'Python',
     packageName: 'prauga-flexdoc',
-    version: '0.1.0',
+    version: '0.2.0',
     registry: 'PyPI',
     href: 'https://pypi.org/project/prauga-flexdoc/',
   },
   {
     ecosystem: 'Rust',
     packageName: 'prauga-flexdoc-axum',
-    version: '0.1.0',
+    version: '0.2.0',
     registry: 'crates.io',
     href: 'https://crates.io/crates/prauga-flexdoc-axum',
   },
@@ -161,13 +176,13 @@ export function FlexDocContent() {
         <div className='container mx-auto max-w-6xl'>
           <div className='mx-auto max-w-4xl text-center'>
             <div className='mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-600 dark:text-blue-300'>
-              <Sparkles size={15} /> FlexDoc 2.1 · now a Prauga project
+              <Sparkles size={15} /> FlexDoc 2.2 · full API Client workflow
             </div>
             <h1 className='text-balance text-5xl font-semibold tracking-[-0.05em] sm:text-6xl md:text-7xl'>
               Your OpenAPI spec should be more than a static reference.
             </h1>
             <p className='mx-auto mt-7 max-w-3xl text-balance text-lg leading-8 text-foreground/65 sm:text-xl'>
-              FlexDoc is Prauga's open-source, self-hosted OpenAPI documentation renderer and API explorer. One canonical renderer now spans React, backend integrations, CLI/static export and language adapters without a hosted FlexDoc service.
+              FlexDoc is Prauga's open-source, self-hosted OpenAPI documentation renderer, Try It explorer and API Client. Version 2.2 keeps one canonical request model from OpenAPI inputs through execution, API Client handoff and generated code across React, backend integrations, CLI/static export and language adapters.
             </p>
             <div className='mt-9 flex flex-col justify-center gap-3 sm:flex-row'>
               <Link
@@ -175,6 +190,12 @@ export function FlexDocContent() {
                 className='inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-blue-500'
               >
                 <Play size={16} /> Try the live demo
+              </Link>
+              <Link
+                href='/flexdoc/client'
+                className='inline-flex items-center justify-center gap-2 rounded-full border border-violet-500/25 bg-violet-500/10 px-6 py-3 text-sm font-semibold text-violet-700 transition hover:-translate-y-0.5 hover:bg-violet-500/15 dark:text-violet-300'
+              >
+                <Workflow size={16} /> Open API Client
               </Link>
               <a
                 href='https://github.com/prauga/flexdoc'
@@ -198,7 +219,7 @@ export function FlexDocContent() {
           <div className='mx-auto mt-16 grid max-w-4xl gap-3 sm:grid-cols-3'>
             {[
               ['OpenAPI', '3.0 + 3.1'],
-              ['Prauga client', '2.1.0'],
+              ['Prauga client', '2.2.0'],
               ['Runtime CDN', 'None required'],
             ].map(([label, value]) => (
               <div key={label} className='rounded-2xl border border-border bg-card/70 p-5 text-center backdrop-blur'>
@@ -250,10 +271,10 @@ export function FlexDocContent() {
         <div className='container mx-auto max-w-6xl'>
           <div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
             <div className='max-w-3xl'>
-              <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>Real renderer · Chromium capture</div>
-              <h2 className='mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>See FlexDoc configured like a production API surface.</h2>
+              <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>Real FlexDoc 2.2 · Chromium capture</div>
+              <h2 className='mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>See the full renderer, Try It and API Client workflow.</h2>
               <p className='mt-4 text-base leading-7 text-foreground/62'>
-                These screenshots are captured from the real Prauga FlexDoc browser renderer with a feature-heavy OpenAPI setup: regional server variables, authentication, advanced parameters, nested schemas, Try It, live response inspection and generated request code. The images automatically match this site&apos;s light or dark theme.
+                These screenshots are captured from this portfolio running the real Prauga FlexDoc 2.2 renderer with a full-surface OpenAPI setup: regional server variables, authentication, advanced parameters, nested schemas, Try It, live response inspection and generated request code. The images automatically match this site&apos;s light or dark theme.
               </p>
             </div>
             <Link href='/flexdoc/demo' className='inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-300'>
@@ -279,16 +300,31 @@ export function FlexDocContent() {
                 <div className='text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300'>Try It, end to end</div>
                 <h3 className='mt-3 text-2xl font-semibold tracking-tight'>The docs execute the request they describe.</h3>
                 <p className='mt-3 text-sm leading-6 text-foreground/62'>
-                  The capture fills path, query, deep-object, header, cookie and bearer inputs, sends a request, renders the response and switches to a generated JavaScript sample — all through the same canonical request model.
+                  The capture fills advanced request inputs, sends the request, renders the response and hands the exact built request into the editable API Client — all through the same canonical request model.
                 </p>
                 <div className='mt-5 flex flex-wrap gap-2 text-xs text-foreground/58'>
-                  {['Bearer auth', 'Server variables', 'deepObject', 'Response viewer', '5 code languages'].map((item) => (
+                  {['Try It → API Client', '5 auth families', 'Custom servers', 'Advanced serialization', 'Response viewer', '5 code languages'].map((item) => (
                     <span key={item} className='rounded-full border border-border bg-background/70 px-3 py-1.5'>{item}</span>
                   ))}
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className='border-t border-border px-4 pb-20 sm:pb-24'>
+        <div className='container mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-center'>
+          <div className='rounded-3xl border border-violet-500/20 bg-violet-500/5 p-7'>
+            <div className='text-xs font-semibold uppercase tracking-[0.18em] text-violet-600 dark:text-violet-300'>Standalone API Client</div>
+            <h3 className='mt-3 text-2xl font-semibold tracking-tight'>OpenAPI is optional once the request reaches the client.</h3>
+            <p className='mt-3 text-sm leading-6 text-foreground/62'>FlexDoc 2.2 exports <code className='rounded bg-background px-1.5 py-0.5'>ApiClient</code> directly for arbitrary HTTP requests. Edit method, URL, query, headers, auth, body and server, then inspect the response using the same canonical request model.</p>
+            <Link href='/flexdoc/client' className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet-700 hover:underline dark:text-violet-300'>Open the standalone client <ArrowRight size={14} /></Link>
+          </div>
+          <figure className='overflow-hidden rounded-3xl border border-border bg-card shadow-xl shadow-black/10'>
+            <img src='/img/flexdoc/showcase-api-client-light.jpg' alt='FlexDoc 2.2 API Client in light mode' className='block h-auto w-full dark:hidden' loading='lazy' />
+            <img src='/img/flexdoc/showcase-api-client-dark.jpg' alt='FlexDoc 2.2 API Client in dark mode' className='hidden h-auto w-full dark:block' loading='lazy' />
+          </figure>
         </div>
       </section>
 
@@ -300,7 +336,7 @@ export function FlexDocContent() {
               The renderer grew into an API exploration engine.
             </h2>
             <p className='mt-4 text-base leading-7 text-foreground/62'>
-              FlexDoc 2.1 builds on the canonical renderer introduced in 2.0 and moves the project under Prauga. The same OpenAPI behavior now powers React, Node integrations, CLI/static export, Spring Boot, Go, Python and Rust adapters.
+              FlexDoc 2.2 adds the standalone API Client, Try It handoff, first-class code-first OpenAPI integrations and fingerprinted renderer assets. The same OpenAPI and request behavior powers React, Node integrations, CLI/static export, Spring Boot, Go, Python and Rust adapters.
             </p>
           </div>
 
@@ -324,6 +360,8 @@ export function FlexDocContent() {
           </div>
         </div>
       </section>
+
+      <FlexDocFeatureSurface />
 
       <section className='border-y border-border bg-card/45 px-4 py-20 sm:py-24'>
         <div className='container mx-auto max-w-6xl'>
@@ -425,9 +463,9 @@ export function FlexDocContent() {
             </div>
             <div className='rounded-3xl border border-blue-500/20 bg-blue-500/5 p-7'>
               <div className='mb-4 inline-flex rounded-xl bg-blue-500/10 p-2.5 text-blue-600 dark:text-blue-300'><Sparkles size={20} /></div>
-              <h2 className='text-2xl font-semibold tracking-tight'>Where FlexDoc goes next</h2>
+              <h2 className='text-2xl font-semibold tracking-tight'>API Client shipped in 2.2</h2>
               <p className='mt-3 text-sm leading-6 text-foreground/62'>
-                Try It already provides the request engine. The next major product surface is a browser API-client workspace: saved requests, environments, scripting and assertions built on the same canonical request model — documentation and API testing without duplicating the engine.
+                The browser API Client is shipped in 2.2, including direct Try It handoff. Persisted collections, environments, variables, scripting/assertions, monitors and collaboration remain future layers that can build on the same canonical request model without duplicating request semantics.
               </p>
             </div>
           </div>
@@ -438,7 +476,7 @@ export function FlexDocContent() {
         <div className='container mx-auto max-w-4xl text-center'>
           <h2 className='text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>Open the spec. Explore it. Call it.</h2>
           <p className='mx-auto mt-4 max-w-2xl text-base leading-7 text-foreground/62'>
-            FlexDoc 2.1 is open source under AGPL-3.0-or-later. Use the live demo, install the package or inspect the architecture on GitHub.
+            FlexDoc 2.2 is open source under AGPL-3.0-or-later. Use the live demo, install the package or inspect the architecture on GitHub.
           </p>
           <div className='mt-8 flex flex-col justify-center gap-3 sm:flex-row'>
             <Link href='/flexdoc/demo' className='inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500'>

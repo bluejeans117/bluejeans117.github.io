@@ -24,11 +24,14 @@ export function Nav() {
     const previous = previousPathname.current;
     previousPathname.current = pathname;
 
-    // FlexDoc's package stylesheet is intentionally loaded only for the demo,
+    // FlexDoc's package stylesheet is intentionally loaded only for renderer/client routes,
     // but Next.js keeps route CSS in the current document during client-side
-    // navigation in development. If we leave the demo, force one clean document
+    // navigation in development. If we leave those routes, force one clean document
     // load so no package-level html/body rules can leak into the portfolio shell.
-    if (previous.startsWith('/flexdoc/demo') && !pathname.startsWith('/flexdoc/demo')) {
+    const rendererRoutes = ['/flexdoc/demo', '/flexdoc/playground', '/flexdoc/client'];
+    const wasRendererRoute = rendererRoutes.some((route) => previous.startsWith(route));
+    const isRendererRoute = rendererRoutes.some((route) => pathname.startsWith(route));
+    if (wasRendererRoute && !isRendererRoute) {
       window.location.reload();
       return;
     }
@@ -102,7 +105,7 @@ export function Nav() {
           </nav>
           <div className='container mx-auto mt-6 max-w-lg rounded-2xl border border-blue-500/15 bg-blue-500/5 p-4'>
             <div className='text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300'>Now shipping</div>
-            <Link href='/flexdoc' className='mt-2 block font-semibold'>FlexDoc 2.0 →</Link>
+            <Link href='/flexdoc' className='mt-2 block font-semibold'>FlexDoc 2.2 →</Link>
           </div>
         </div>
       )}
