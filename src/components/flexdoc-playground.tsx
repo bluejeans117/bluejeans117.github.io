@@ -13,7 +13,7 @@ export function FlexDocPlayground() {
   const isDark = mounted && resolvedTheme === 'dark';
   const initialSpec = showcaseSpec as unknown as OpenAPISpec;
   const [spec, setSpec] = useState<OpenAPISpec>(initialSpec);
-  const [fileName, setFileName] = useState('FlexDoc 2.2 full-surface showcase');
+  const [fileName, setFileName] = useState('FlexDoc 2.3 full-surface showcase');
   const [error, setError] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,13 +50,13 @@ export function FlexDocPlayground() {
 
   const reset = () => {
     setSpec(initialSpec);
-    setFileName('FlexDoc 2.2 full-surface showcase');
+    setFileName('FlexDoc 2.3 full-surface showcase');
     setError(null);
   };
 
   return (
     <div className='min-h-screen'>
-      <div className='container mx-auto max-w-[1500px] px-3 py-8 sm:px-4 sm:py-10'>
+      <div className='container mx-auto max-w-[1500px] px-4 py-6 sm:py-10'>
         <a href='/flexdoc' className='mb-6 inline-flex items-center gap-2 text-sm text-blue-600 hover:underline dark:text-blue-300'>
           <ArrowLeft size={16} /> Back to FlexDoc
         </a>
@@ -64,11 +64,11 @@ export function FlexDocPlayground() {
         <div className='mb-7 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end'>
           <div>
             <div className='mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300'>
-              <UploadCloud size={14} /> Your spec, rendered locally with 2.2
+              <UploadCloud size={14} /> Your spec, rendered locally for FlexDoc 2.3
             </div>
-            <h1 className='text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>Try the complete FlexDoc workflow with your OpenAPI document</h1>
+            <h1 className='text-2xl font-semibold tracking-[-0.03em] sm:text-4xl'>Try the complete FlexDoc workflow with your OpenAPI document</h1>
             <p className='mt-3 max-w-3xl text-sm leading-6 text-foreground/62 sm:text-base'>
-              Drop an OpenAPI 3.0 or 3.1 JSON/YAML file below. It is read and parsed in your browser. Open an operation to use Try It, response inspection, generated code and the 2.2 API Client handoff without uploading the specification to this portfolio.
+              Drop an OpenAPI 3.0 or 3.1 JSON/YAML file below. It is read and parsed in your browser. Open an operation to use Try It, response inspection, generated code and the API Client handoff without uploading the specification to this portfolio.
             </p>
             <div className='mt-3 inline-flex items-center gap-2 text-xs text-foreground/50'>
               <Workflow size={14} /> Try It values can be snapshotted directly into the editable API Client.
@@ -106,9 +106,9 @@ export function FlexDocPlayground() {
               <FileJson size={16} className='shrink-0 text-blue-600 dark:text-blue-300' />
               <span className='truncate'>{fileName}</span>
             </div>
-            <span className='text-xs text-foreground/45'>FlexDoc 2.2.0 · {isDark ? 'dark' : 'light'} · full renderer options enabled</span>
+            <span className='text-xs text-foreground/45'>FlexDoc 2.3 product surface · client 2.2.0 · {isDark ? 'dark' : 'light'}</span>
           </div>
-          <div className='min-h-[760px] overflow-auto sm:h-[860px]'>
+          <div className='h-[68dvh] min-h-[500px] max-h-[620px] min-w-0 overflow-auto sm:h-[74dvh] sm:min-h-[620px] sm:max-h-[760px] lg:h-[800px] lg:max-h-none'>
             <FlexDocClientWrapper theme={isDark ? 'dark' : 'light'} spec={spec} title={fileName} />
           </div>
         </div>

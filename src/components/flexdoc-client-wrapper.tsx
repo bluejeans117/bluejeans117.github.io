@@ -10,15 +10,15 @@ const FlexDoc = dynamic<FlexDocProps>(
   { ssr: false }
 );
 
-const logo = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="34" viewBox="0 0 120 34"%3E%3Crect width="120" height="34" rx="9" fill="%230f172a"/%3E%3Ccircle cx="17" cy="17" r="7" fill="%2360a5fa"/%3E%3Ctext x="31" y="22" fill="white" font-family="Arial,sans-serif" font-size="15" font-weight="700"%3EFlexDoc 2.2%3C/text%3E%3C/svg%3E';
+const logo = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="34" viewBox="0 0 120 34"%3E%3Crect width="120" height="34" rx="9" fill="%230f172a"/%3E%3Ccircle cx="17" cy="17" r="7" fill="%2360a5fa"/%3E%3Ctext x="31" y="22" fill="white" font-family="Arial,sans-serif" font-size="15" font-weight="700"%3EFlexDoc 2.3%3C/text%3E%3C/svg%3E';
 
 function fullSurfaceOptions(theme: 'light' | 'dark', title: string): FlexDocRendererOptions {
   return {
     contractVersion: '1',
     title,
-    description: 'Complete FlexDoc 2.2 renderer, Try It and API Client showcase.',
+    description: 'Complete FlexDoc 2.3 product showcase across the canonical renderer, Try It and API Client.',
     altDescription: 'OpenAPI documentation that can execute and hand off requests.',
-    version: '2.2.0',
+    version: '2.3.0',
     tagGroups: [
       { name: 'Core API', tags: ['Pets', 'Search'] },
       { name: 'Bodies & auth', tags: ['Forms', 'Admin'] },
@@ -66,8 +66,8 @@ function fullSurfaceOptions(theme: 'light' | 'dark', title: string): FlexDocRend
         delete: { bg: theme === 'dark' ? '#450a0a' : '#fee2e2', border: '#ef4444' },
       },
     },
-    logo: { url: logo, alt: 'FlexDoc 2.2', maxHeight: 34, maxWidth: 120, clickable: false },
-    customCss: '.flexdoc-root { --portfolio-flexdoc-surface: 2.2; }',
+    logo: { url: logo, alt: 'FlexDoc 2.3', maxHeight: 34, maxWidth: 120, clickable: false },
+    customCss: '.flexdoc-root { --portfolio-flexdoc-surface: 2.3; }',
     hideDownloadButton: false,
     hideTopbar: false,
     expandResponses: '200,201',
@@ -92,7 +92,7 @@ function fullSurfaceOptions(theme: 'light' | 'dark', title: string): FlexDocRend
       credentials: 'same-origin',
       requestInterceptor: (request) => ({
         ...request,
-        headers: { ...request.headers, 'X-FlexDoc-Portfolio': '2.2-full-surface' },
+        headers: { ...request.headers, 'X-FlexDoc-Portfolio': '2.3-full-surface' },
       }),
     },
     codeSamples: {
@@ -100,7 +100,7 @@ function fullSurfaceOptions(theme: 'light' | 'dark', title: string): FlexDocRend
       languages: ['curl', 'javascript', 'python', 'go', 'java'],
     },
     footer: {
-      copyright: 'Prauga FlexDoc 2.2 full-surface showcase',
+      copyright: 'Prauga FlexDoc 2.3 full-surface showcase',
       link: [
         { text: 'Repository', url: 'https://github.com/prauga/flexdoc' },
         { text: 'AGPL-3.0', url: 'https://www.gnu.org/licenses/agpl-3.0.html' },
@@ -118,7 +118,7 @@ export interface FlexDocClientWrapperProps {
 export function FlexDocClientWrapper({
   theme,
   spec = showcaseSpec as unknown as OpenAPISpec,
-  title = 'FlexDoc 2.2 full-surface showcase',
+  title = 'FlexDoc 2.3 full-surface showcase',
 }: FlexDocClientWrapperProps) {
   return (
     <FlexDoc

@@ -35,7 +35,7 @@ export default function Home() {
       <Nav />
 
       <main className='flex-1'>
-        <section className='relative overflow-hidden px-4 pb-20 pt-16 sm:pt-24'>
+        <section className='relative overflow-hidden px-4 pb-16 pt-12 sm:pb-20 sm:pt-24'>
           <div className='pointer-events-none absolute left-1/2 top-16 -z-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl' />
 
           <div className='container mx-auto max-w-6xl'>
@@ -51,12 +51,12 @@ export default function Home() {
                 />
               </div>
 
-              <div className='mb-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-card/70 px-4 py-2 text-sm text-foreground/70 shadow-sm backdrop-blur'>
+              <div className='mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-accent/20 bg-card/70 px-3.5 py-2 text-xs leading-5 text-foreground/70 shadow-sm backdrop-blur sm:px-4 sm:text-sm'>
                 <span className='h-2 w-2 rounded-full bg-emerald-500' />
                 Senior Software Engineer at Epsilon · Co-founder & CTO at Prauga
               </div>
 
-              <h1 className='text-balance text-5xl font-semibold tracking-[-0.04em] sm:text-6xl md:text-7xl'>
+              <h1 className='text-balance text-[2.6rem] font-semibold leading-[1.03] tracking-[-0.045em] sm:text-6xl md:text-7xl'>
                 I build backend systems and{' '}
                 <span className='gradient-text'>developer tools</span> that make
                 complex infrastructure easier to use.
@@ -66,7 +66,7 @@ export default function Home() {
                 I&apos;m Vishnu Rajesh, a Bengaluru-based software engineer with 6+
                 years across backend engineering, distributed systems, cloud,
                 product development and open source. My current open-source focus
-                is FlexDoc 2.0.
+                is FlexDoc 2.3.
               </p>
 
               <div className='mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row'>
@@ -74,7 +74,7 @@ export default function Home() {
                   href='/flexdoc'
                   className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-lg transition hover:-translate-y-0.5 hover:opacity-90 sm:w-auto'
                 >
-                  Explore FlexDoc 2.0 <ArrowRight size={16} />
+                  Explore FlexDoc 2.3 <ArrowRight size={16} />
                 </Link>
                 <Link
                   href='/experience'
@@ -133,12 +133,10 @@ export default function Home() {
                     Current build
                   </div>
                   <h2 className='text-2xl font-semibold tracking-tight'>
-                    FlexDoc 2.0 — OpenAPI docs that live with your API
+                    FlexDoc 2.3 — OpenAPI docs and a local API workspace
                   </h2>
                   <p className='mt-2 max-w-2xl text-sm leading-6 text-foreground/60'>
-                    One canonical renderer, OpenAPI 3.0/3.1, real Try It request
-                    execution, code samples and integrations for React, Node and
-                    Spring Boot — self-hosted, with no account or runtime CDN.
+                    One canonical renderer, OpenAPI 3.0/3.1, Try It, generated code, a local API workspace and integrations across browser, Node, .NET, JVM, Python, PHP, Ruby, Go, Rust and Elixir — self-hosted, with no account or runtime CDN.
                   </p>
                 </div>
                 <Link

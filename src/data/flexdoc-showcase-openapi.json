@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "FlexDoc 2.2 Showcase API",
-    "version": "2.2.0",
-    "description": "Full-surface FlexDoc 2.2 showcase covering OpenAPI navigation and schemas, external references, server selection, all request serialization families, authentication, request bodies, Try It, response inspection, API Client handoff and generated code.",
+    "title": "FlexDoc 2.3 Showcase API",
+    "version": "2.3.0",
+    "description": "Full-surface FlexDoc 2.3 product showcase covering OpenAPI navigation and schemas, external references, server selection, request serialization, authentication, request bodies, Try It, API Client handoff and generated code.",
     "contact": {
       "name": "Prauga",
       "url": "https://github.com/prauga/flexdoc"

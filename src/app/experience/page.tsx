@@ -25,7 +25,7 @@ const experience = [
     highlights: [
       'Lead product and technology decisions across backend, mobile, cloud and infrastructure work.',
       'Built and explored products spanning developer tooling, collaborative applications and Linux/Android platform work.',
-      'Created FlexDoc as an open-source OpenAPI documentation renderer and API explorer; FlexDoc 2.0 now uses one canonical renderer across React, Node integrations and Spring Boot.',
+      'Created FlexDoc as an open-source OpenAPI documentation renderer and API exploration workspace; FlexDoc 2.3 uses one canonical renderer contract across browser/Node and a broad cross-language adapter stack.',
     ],
   },
   {
@@ -64,7 +64,7 @@ export default function Experience() {
       <main className='container mx-auto max-w-6xl px-4 py-12 sm:py-16'>
         <header className='max-w-3xl'>
           <div className='text-xs font-semibold uppercase tracking-[0.2em] text-accent'>Career</div>
-          <h1 className='mt-3 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl'>
+          <h1 className='mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-5xl'>
             Building systems, then owning what happens to them in production.
           </h1>
           <p className='mt-5 text-base leading-7 text-foreground/65 sm:text-lg'>
@@ -74,9 +74,9 @@ export default function Experience() {
 
         <div className='relative mt-14 space-y-5 before:absolute before:bottom-6 before:left-[7px] before:top-6 before:w-px before:bg-border sm:before:left-[11px]'>
           {experience.map((job, index) => (
-            <article key={`${job.company}-${job.period}`} className='relative pl-8 sm:pl-10'>
+            <article key={`${job.company}-${job.period}`} className='relative pl-7 sm:pl-10'>
               <span className={`absolute left-0 top-7 h-4 w-4 rounded-full border-4 border-background sm:h-6 sm:w-6 ${index === 0 ? 'bg-emerald-500' : 'bg-accent/50'}`} />
-              <div className='glass-card rounded-2xl p-6 sm:p-7'>
+              <div className='glass-card rounded-2xl p-5 sm:p-7'>
                 <div className='flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between'>
                   <div>
                     <h2 className='text-xl font-semibold tracking-tight'>{job.title}</h2>

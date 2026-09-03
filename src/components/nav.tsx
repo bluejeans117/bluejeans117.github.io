@@ -90,7 +90,7 @@ export function Nav() {
       </div>
 
       {isMenuOpen && (
-        <div className='fixed inset-x-0 top-16 z-50 h-[calc(100dvh-4rem)] border-t border-border bg-background/95 px-4 py-6 backdrop-blur-2xl md:hidden'>
+        <div className='fixed inset-x-0 top-16 z-50 h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-border bg-background/95 px-4 py-5 backdrop-blur-2xl md:hidden'>
           <nav className='container mx-auto grid max-w-lg gap-2'>
             <Link href='/' className={`rounded-xl px-4 py-3 text-base font-medium ${pathname === '/' ? 'bg-accent/10 text-accent' : 'text-foreground/70'}`}>Home</Link>
             {links.map((link) => {
@@ -105,7 +105,7 @@ export function Nav() {
           </nav>
           <div className='container mx-auto mt-6 max-w-lg rounded-2xl border border-blue-500/15 bg-blue-500/5 p-4'>
             <div className='text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300'>Now shipping</div>
-            <Link href='/flexdoc' className='mt-2 block font-semibold'>FlexDoc 2.2 →</Link>
+            <Link href='/flexdoc' className='mt-2 block font-semibold'>FlexDoc 2.3 →</Link>
           </div>
         </div>
       )}
