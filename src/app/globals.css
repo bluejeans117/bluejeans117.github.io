@@ -54,11 +54,13 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-foreground;
     min-width: 320px;
+    overflow-x: clip;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
@@ -83,5 +85,14 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .mobile-snap-row {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .mobile-snap-row::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { ArrowLeft, ExternalLink, Network, Sparkles, Workflow } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Network, PackageCheck, Sparkles, Workflow } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import type { ApiClientProps, BuiltRequest } from '@prauga/flexdoc-client';
@@ -30,34 +30,34 @@ export function FlexDocApiClientDemo() {
 
   return (
     <div className='min-h-screen'>
-      <div className='container mx-auto max-w-[1450px] px-3 py-8 sm:px-4 sm:py-10'>
+      <div className='container mx-auto max-w-[1450px] px-4 py-6 sm:py-10'>
         <a href='/flexdoc' className='mb-6 inline-flex items-center gap-2 text-sm text-blue-600 hover:underline dark:text-blue-300'>
-          <ArrowLeft size={16} /> Back to FlexDoc 2.2
+          <ArrowLeft size={16} /> Back to FlexDoc 2.3
         </a>
 
         <div className='grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end'>
           <div>
             <div className='mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300'>
-              <Sparkles size={14} /> Standalone @prauga/flexdoc-client 2.2.0
+              <Sparkles size={14} /> Product milestone 2.3 · published client 2.2.0
             </div>
-            <h1 className='text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>The API Client without an OpenAPI document.</h1>
+            <h1 className='text-2xl font-semibold tracking-[-0.03em] sm:text-4xl'>The canonical HTTP request editor behind the 2.3 workspace.</h1>
             <p className='mt-3 max-w-3xl text-sm leading-6 text-foreground/62 sm:text-base'>
-              Edit any HTTP request directly: method, URL, ordered query/header pairs, authorization, content type, body and server. The same canonical request representation is used when Try It hands an OpenAPI request into this workspace.
+              The live portfolio stays on the published npm client: edit any HTTP method, URL, ordered query/header pairs, authorization, content type, body and server using the same request model as Try It. The 2.3 source milestone layers collections, environments, variables, scripts, tests and history around this editor.
             </p>
           </div>
           <div className='rounded-2xl border border-border bg-card/70 p-5 text-sm leading-6 text-foreground/60'>
-            <div className='flex items-center gap-2 font-semibold text-foreground'><Network size={16} /> Live request note</div>
-            <p className='mt-2'>The default request targets <code className='rounded bg-background px-1.5 py-0.5'>httpbin.org/anything</code>, a third-party echo endpoint. Nothing is sent until you press Send request. Change the URL or custom server before sending if you prefer.</p>
+            <div className='flex items-center gap-2 font-semibold text-foreground'><PackageCheck size={16} /> Published-artifact demo</div>
+            <p className='mt-2'>This page intentionally imports only APIs present in <code className='rounded bg-background px-1.5 py-0.5'>@prauga/flexdoc-client@2.2.0</code>. The richer <code className='rounded bg-background px-1.5 py-0.5'>ApiClientWorkspace</code> surface is documented from current 2.3 source without vendoring unpublished npm code into the portfolio.</p>
           </div>
         </div>
 
         <div className='mt-8 grid gap-5 xl:grid-cols-[minmax(0,1fr)_320px]'>
           <div className={`overflow-hidden rounded-2xl border shadow-2xl shadow-black/10 ${isDark ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-white'}`}>
-            <div className={`flex items-center justify-between gap-3 border-b px-4 py-3 ${isDark ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-slate-50'}`}>
-              <span className='text-xs font-semibold text-foreground/55'>FlexDoc API Client 2.2</span>
-              <span className='inline-flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-300'><Workflow size={13} /> canonical HTTP request editor</span>
+            <div className={`flex flex-col items-start gap-2 border-b px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 ${isDark ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-slate-50'}`}>
+              <span className='text-xs font-semibold text-foreground/55'>FlexDoc API Client · published client 2.2.0</span>
+              <span className='inline-flex flex-wrap items-center gap-1.5 text-xs text-blue-600 dark:text-blue-300'><Workflow size={13} /> canonical HTTP request editor</span>
             </div>
-            <div className='p-3 sm:p-4'>
+            <div className='min-w-0 overflow-x-auto p-2 sm:p-4'>
               <ApiClient
                 theme={isDark ? 'dark' : 'light'}
                 credentials='omit'
@@ -68,16 +68,16 @@ export function FlexDocApiClientDemo() {
                   url: 'https://httpbin.org/anything',
                   query: [
                     { key: 'source', value: 'flexdoc-portfolio', enabled: true },
-                    { key: 'version', value: '2.2.0', enabled: true },
+                    { key: 'product', value: '2.3', enabled: true },
                   ],
-                  headers: [{ key: 'X-Demo-Trace', value: 'flexdoc-2-2', enabled: true }],
+                  headers: [{ key: 'X-Demo-Trace', value: 'flexdoc-2-3', enabled: true }],
                   contentType: 'application/json',
-                  body: JSON.stringify({ message: 'Hello from FlexDoc 2.2', surface: 'standalone-api-client' }, null, 2),
+                  body: JSON.stringify({ message: 'Hello from FlexDoc', productMilestone: '2.3' }, null, 2),
                   auth: { type: 'none' },
                 }}
                 requestInterceptor={(next) => {
                   const headers = new Headers(next.headers);
-                  headers.set('X-FlexDoc-Portfolio', '2.2');
+                  headers.set('X-FlexDoc-Portfolio', '2.3');
                   return { ...next, headers };
                 }}
                 onRequestChange={setRequest}
@@ -96,7 +96,11 @@ export function FlexDocApiClientDemo() {
                 <div><span className='text-foreground/45'>Body kind</span><div className='mt-1 font-mono text-xs'>{request.bodyKind || 'none'}</div></div>
               </div>
             ) : <p className='mt-4 text-sm leading-6 text-foreground/55'>The preview appears as soon as the client builds the initial request.</p>}
-            <a href='https://github.com/prauga/flexdoc/blob/main/packages/client/src/components/ApiClient.tsx' target='_blank' rel='noopener noreferrer' className='mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-300'>Source <ExternalLink size={13} /></a>
+            <div className='mt-6 rounded-xl border border-border bg-background/70 p-3 text-xs leading-5 text-foreground/52'>
+              <div className='mb-1 flex items-center gap-1.5 font-semibold text-foreground/70'><Network size={13} /> Live request note</div>
+              Nothing is sent until you press Send request. The default URL is the third-party httpbin echo service and can be changed before execution.
+            </div>
+            <a href='https://github.com/prauga/flexdoc/blob/main/packages/client/src/components/ApiClientWorkspace.tsx' target='_blank' rel='noopener noreferrer' className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-300'>2.3 workspace source <ExternalLink size={13} /></a>
           </aside>
         </div>
       </div>

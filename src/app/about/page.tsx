@@ -29,11 +29,11 @@ export default function About() {
           </div>
           <div>
             <div className='text-xs font-semibold uppercase tracking-[0.2em] text-accent'>About</div>
-            <h1 className='mt-3 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl'>Backend engineer, product builder and open-source developer.</h1>
+            <h1 className='mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-5xl'>Backend engineer, product builder and open-source developer.</h1>
             <div className='mt-6 space-y-4 text-base leading-7 text-foreground/68 sm:text-lg'>
               <p>I&apos;m a Senior Software Engineer at Epsilon in Bengaluru, working primarily on backend and ad-tech systems, while also serving as Co-founder & CTO at Prauga. I have 6+ years of experience across backend engineering, cloud infrastructure, distributed systems, mobile products and developer tooling.</p>
               <p>Go is the language I reach for most often, but my career has been intentionally broad: Kafka and high-throughput consumers, Kubernetes and cloud platforms, Java services, React/Angular applications, Flutter products, databases from PostgreSQL to HBase, and blockchain infrastructure with Hyperledger Fabric.</p>
-              <p>My current open-source focus is <strong className='text-foreground'>FlexDoc</strong>, a self-hosted OpenAPI documentation renderer and API explorer. FlexDoc 2.0 is built around one canonical browser renderer shared by React, Node framework adapters and Spring Boot.</p>
+              <p>My current open-source focus is <strong className='text-foreground'>FlexDoc</strong>, a self-hosted OpenAPI documentation renderer and API explorer. FlexDoc 2.3 keeps one canonical renderer and request model across browser/Node integrations, .NET, JVM frameworks, Python, PHP, Ruby, Go, Rust, Elixir and static distribution.</p>
             </div>
           </div>
         </section>

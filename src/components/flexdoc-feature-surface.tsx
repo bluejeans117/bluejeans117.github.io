@@ -58,55 +58,58 @@ const coverage = [
     ],
   },
   {
-    title: 'Standalone API Client',
+    title: 'Local API Client workspace',
     icon: TerminalSquare,
     items: [
-      'arbitrary GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS requests',
-      'editable URL, ordered query parameters and headers',
-      'None, Bearer, Basic and API-key authorization',
-      'editable content type and request body',
-      'configured server selection, custom server URL and canonical request-change callbacks',
-      'live response status, headers and body rendering',
+      'arbitrary HTTP requests with editable URL, query, headers, auth and bodies',
+      'collections, folders and reusable saved requests',
+      'named environments with {{variable}} substitution at request-build time',
+      'trusted pre-request JavaScript with run-local and environment variables',
+      'response tests/assertions plus captured script console output',
+      'request history with resolved execution metadata and raw-template replay',
+      'browser-local IndexedDB persistence with configurable workspace keys',
     ],
   },
 ];
 
 const integrations = [
-  ['React', '@prauga/flexdoc-client', 'Direct FlexDoc + ApiClient components'],
-  ['Express', 'swagger-jsdoc or explicit spec', 'setupExpressFlexDoc'],
-  ['Fastify', '@fastify/swagger', 'setupFastifySwaggerFlexDoc / setupFastifyFlexDoc'],
-  ['NestJS', '@nestjs/swagger decorators', 'setupNestFlexDoc'],
-  ['Spring Boot', 'springdoc annotations', 'flexdoc-spring-boot-starter'],
-  ['Python', 'FastAPI OpenAPI or generic ASGI', 'setup_fastapi_flexdoc / FlexDocASGI'],
-  ['Go', 'Huma or any JSON-serializable OpenAPI 3.x value', 'HandlerFromOpenAPI / Handler'],
-  ['Rust', 'utoipa / utoipa-axum', 'router_with_openapi / router'],
-  ['CLI / static', 'JSON or YAML document', 'serve --watch / build --out'],
-  ['Standalone browser', 'packaged JS + CSS', 'No runtime CDN dependency'],
+  ['Browser / Node', 'React + standalone renderer', 'Express · Fastify · NestJS · Hono'],
+  ['.NET', 'ASP.NET Core endpoint routing', 'ASP.NET Core 8+'],
+  ['JVM', 'framework-neutral host + Jakarta transport', 'Spring Boot · JAX-RS · Quarkus · Micronaut · Guice/Governator · Ktor'],
+  ['Python', 'neutral host + ASGI / WSGI transports', 'FastAPI · Starlette · Flask · Django'],
+  ['PHP', 'framework-neutral PHP host', 'Laravel · Symfony'],
+  ['Ruby', 'host + Rack transport', 'Rack · Rails'],
+  ['Go', 'standard net/http handler', 'net/http · Gin · Chi · Echo v5 · Fiber v3'],
+  ['Rust', 'native transport crates', 'Axum · Actix Web'],
+  ['Elixir', 'Plug', 'Plug · Phoenix'],
+  ['CLI / static', 'JSON or YAML document', 'local serve/watch · self-contained static export'],
 ];
 
 const constraints = [
-  'OAuth2/OpenID support injects a supplied access token; FlexDoc 2.2 does not implement the OAuth authorization-code flow itself.',
+  'OAuth2/OpenID support injects a supplied access token; FlexDoc does not run an OAuth authorization-code flow itself.',
   'deepObject is first-class for flat object properties; nested deep-object expansion is not recursive.',
   'multipart requests use FormData, but binary file picking is not yet a first-class renderer control.',
   'patternProperties / JSON Schema conditionals, webhooks, callbacks and XML metadata are retained or partially modeled but are not complete first-class interactive surfaces.',
+  'API Client scripts are trusted local JavaScript, not a security sandbox. Persisted workspace secrets are stored as entered in the browser origin.',
+  'environment template expansion is one pass; request chaining, collection variables, cookie APIs and external script imports remain future workspace layers.',
   'Swagger/OpenAPI 2.0 is not accepted; integrations should generate OpenAPI 3.x.',
 ];
 
 export function FlexDocFeatureSurface() {
   return (
-    <section className='border-y border-border bg-card/35 px-4 py-20 sm:py-24'>
+    <section className='border-y border-border bg-card/35 px-4 py-16 sm:py-24'>
       <div className='container mx-auto max-w-6xl'>
         <div className='max-w-3xl'>
-          <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>2.2 feature surface</div>
-          <h2 className='mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>Coverage down to the request semantics.</h2>
+          <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>2.3 product surface</div>
+          <h2 className='mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>One request model, from reference docs to a local API workspace.</h2>
           <p className='mt-4 text-base leading-7 text-foreground/62'>
-            This is the shipped 2.2 surface, not a roadmap list. The OpenAPI items below mirror FlexDoc&apos;s tested compatibility corpus; the live showcase exercises the first-class interactive behaviors and the playground accepts your own 3.0/3.1 document.
+            FlexDoc 2.3 keeps the tested OpenAPI/request semantics from the renderer while closing the framework-coverage stack and growing the API Client into a browser-local workspace with reusable requests, environments, scripts, tests and history.
           </p>
         </div>
 
-        <div className='mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
+        <div className='mobile-snap-row mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 lg:grid-cols-3'>
           {coverage.map(({ title, icon: Icon, items }) => (
-            <article key={title} className='rounded-2xl border border-border bg-background/70 p-6'>
+            <article key={title} className='w-[82vw] max-w-[320px] shrink-0 snap-start rounded-2xl border border-border bg-background/70 p-5 sm:p-6 md:w-auto md:max-w-none md:shrink'>
               <div className='mb-4 inline-flex rounded-xl bg-blue-500/10 p-2.5 text-blue-600 dark:text-blue-300'><Icon size={19} /></div>
               <h3 className='font-semibold'>{title}</h3>
               <div className='mt-4 space-y-2.5'>
@@ -123,17 +126,17 @@ export function FlexDocFeatureSurface() {
 
         <div className='mt-12'>
           <div className='max-w-3xl'>
-            <div className='text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300'>Code-first & distribution coverage</div>
-            <h3 className='mt-3 text-2xl font-semibold tracking-tight'>Use each ecosystem&apos;s native OpenAPI generator.</h3>
-            <p className='mt-3 text-sm leading-6 text-foreground/62'>FlexDoc does not invent a competing annotation system. Framework-native schemas, decorators, annotations, types and macros remain the source of truth; thin adapters feed the resulting OpenAPI document into the canonical renderer.</p>
+            <div className='text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300'>Framework coverage</div>
+            <h3 className='mt-3 text-2xl font-semibold tracking-tight'>Native framework boundaries, not renderer forks.</h3>
+            <p className='mt-3 text-sm leading-6 text-foreground/62'>FlexDoc keeps each ecosystem&apos;s own OpenAPI generator and HTTP primitives. Thin hosts serve the same packaged renderer contract, so adding a framework does not mean rebuilding navigation, schemas, Try It or the API Client.</p>
           </div>
           <div className='mt-6 overflow-hidden rounded-2xl border border-border bg-background/70'>
-            <div className='hidden grid-cols-[0.7fr_1.25fr_1.35fr] gap-3 border-b border-border bg-card px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-foreground/45 sm:grid'>
-              <span>Ecosystem</span><span>OpenAPI source</span><span>FlexDoc surface</span>
+            <div className='hidden grid-cols-[0.65fr_1.15fr_1.6fr] gap-3 border-b border-border bg-card px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-foreground/45 sm:grid'>
+              <span>Runtime</span><span>Native boundary</span><span>2.3 coverage</span>
             </div>
-            {integrations.map(([ecosystem, source, surface]) => (
-              <div key={ecosystem} className='grid grid-cols-1 gap-1 border-b border-border/70 px-4 py-4 text-sm last:border-b-0 sm:grid-cols-[0.7fr_1.25fr_1.35fr] sm:gap-3'>
-                <strong>{ecosystem}</strong><span className='text-foreground/60'>{source}</span><span className='font-mono text-xs leading-5 text-foreground/70'>{surface}</span>
+            {integrations.map(([runtime, boundary, frameworks]) => (
+              <div key={runtime} className='grid grid-cols-1 gap-1 border-b border-border/70 px-4 py-4 text-sm last:border-b-0 sm:grid-cols-[0.65fr_1.15fr_1.6fr] sm:gap-3'>
+                <strong>{runtime}</strong><span className='text-foreground/60'>{boundary}</span><span className='text-xs leading-5 text-foreground/70'>{frameworks}</span>
               </div>
             ))}
           </div>
@@ -143,7 +146,7 @@ export function FlexDocFeatureSurface() {
           <div className='flex items-start gap-3'>
             <AlertTriangle className='mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-300' />
             <div>
-              <h3 className='font-semibold'>Deliberate 2.2 boundaries</h3>
+              <h3 className='font-semibold'>Deliberate boundaries</h3>
               <div className='mt-3 space-y-2 text-sm leading-6 text-foreground/62'>
                 {constraints.map((item) => <p key={item}>{item}</p>)}
               </div>

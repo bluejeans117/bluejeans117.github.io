@@ -6,7 +6,7 @@ const projects = [
     title: 'FlexDoc',
     label: 'Prauga · Open source developer tooling',
     description:
-      "Prauga's self-hosted OpenAPI documentation renderer and API explorer. FlexDoc 2.2 spans React, Node, Spring Boot, CLI/static export, Go, Python and Rust around one canonical renderer, request engine and Try It → API Client workflow.",
+      "Prauga's self-hosted OpenAPI documentation renderer and API exploration workspace. FlexDoc 2.3 spans React/Node, ASP.NET Core, JVM frameworks, Python, PHP, Ruby, Go, Rust and Elixir around one renderer contract, request engine and Try It → API Client workflow.",
     tech: ['TypeScript', 'React', 'OpenAPI', 'CLI', 'Polyglot adapters'],
     href: '/flexdoc',
     github: 'https://github.com/prauga/flexdoc',
@@ -68,7 +68,7 @@ export default function Work() {
       <div className='container mx-auto max-w-6xl px-4 py-12 sm:py-16'>
         <header className='max-w-3xl'>
           <div className='text-xs font-semibold uppercase tracking-[0.2em] text-accent'>Projects</div>
-          <h1 className='mt-3 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl'>
+          <h1 className='mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-5xl'>
             Things I&apos;ve built, contributed to, or am still figuring out.
           </h1>
           <p className='mt-5 text-base leading-7 text-foreground/62'>
