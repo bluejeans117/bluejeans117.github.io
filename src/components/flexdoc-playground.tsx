@@ -71,7 +71,7 @@ export function FlexDocPlayground() {
               Drop an OpenAPI 3.0 or 3.1 JSON/YAML file below. It is read and parsed in your browser. Open an operation to use Try It, response inspection, generated code and the API Client handoff without uploading the specification to this portfolio.
             </p>
             <div className='mt-3 inline-flex items-center gap-2 text-xs text-foreground/50'>
-              <Workflow size={14} /> Try It values can be snapshotted directly into the editable API Client.
+              <Workflow size={14} /> Try It values and supported authorization context can be handed directly into the published local API Client workspace.
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export function FlexDocPlayground() {
               <FileJson size={16} className='shrink-0 text-blue-600 dark:text-blue-300' />
               <span className='truncate'>{fileName}</span>
             </div>
-            <span className='text-xs text-foreground/45'>FlexDoc 2.3 product surface · client 2.2.0 · {isDark ? 'dark' : 'light'}</span>
+            <span className='text-xs text-foreground/45'>FlexDoc 2.3 published surface · client 2.3.0 · {isDark ? 'dark' : 'light'}</span>
           </div>
           <div className='h-[68dvh] min-h-[500px] max-h-[620px] min-w-0 overflow-auto sm:h-[74dvh] sm:min-h-[620px] sm:max-h-[760px] lg:h-[800px] lg:max-h-none'>
             <FlexDocClientWrapper theme={isDark ? 'dark' : 'light'} spec={spec} title={fileName} />

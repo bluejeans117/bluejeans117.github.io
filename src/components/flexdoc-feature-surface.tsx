@@ -30,8 +30,10 @@ const coverage = [
     items: [
       'Bearer and Basic HTTP authentication',
       'API keys in header, query and cookie locations',
-      'OAuth2 and OpenID Connect access-token injection as Bearer',
+      'OAuth2 and OpenID Connect access-token injection from OpenAPI Try It',
       'OpenAPI security OR alternatives and multi-scheme AND requirements',
+      'API Client collection/folder/request auth inheritance with explicit No auth overrides',
+      'API Client OAuth manual tokens, Authorization Code + PKCE, Client Credentials, Password, Implicit and refresh-token reuse',
       'request interceptors and configurable Fetch credentials behavior',
     ],
   },
@@ -52,9 +54,10 @@ const coverage = [
     items: [
       'responsive reference UI, endpoint search and stable deep links',
       'Try It request editing and execution from OpenAPI operations',
-      'Try It → API Client handoff without rebuilding the request',
+      'canonical Try It → API Client sessions preserving server and authorization context',
       'cURL, JavaScript, Python, Go and Java samples from the same canonical request',
       'light/dark themes, logos, CSS/theme tokens, tag groups, extensions and renderer options',
+      'renderer expansion defaults and viewer settings exposed across adapter configuration',
     ],
   },
   {
@@ -62,11 +65,11 @@ const coverage = [
     icon: TerminalSquare,
     items: [
       'arbitrary HTTP requests with editable URL, query, headers, auth and bodies',
-      'collections, folders and reusable saved requests',
-      'named environments with {{variable}} substitution at request-build time',
-      'trusted pre-request JavaScript with run-local and environment variables',
+      'collections, arbitrarily nested folders and reusable saved requests',
+      'collection variables plus named environments with deterministic {{variable}} precedence',
+      'trusted pre-request JavaScript with run-local, collection and environment variables',
       'response tests/assertions plus captured script console output',
-      'request history with resolved execution metadata and raw-template replay',
+      'request history with resolved execution metadata, test results/logs, collection/folder identity and raw-template replay',
       'browser-local IndexedDB persistence with configurable workspace keys',
     ],
   },
@@ -86,12 +89,13 @@ const integrations = [
 ];
 
 const constraints = [
-  'OAuth2/OpenID support injects a supplied access token; FlexDoc does not run an OAuth authorization-code flow itself.',
+  'OpenAPI Try It itself uses supplied OAuth/OpenID tokens; interactive OAuth grant acquisition lives in the API Client workspace and requires browser-compatible redirect/CORS behavior.',
+  'OAuth client secrets entered in the browser are not confidential. Token acquisition/refresh is explicit, and expires_in is informational rather than an automatic refresh scheduler.',
   'deepObject is first-class for flat object properties; nested deep-object expansion is not recursive.',
   'multipart requests use FormData, but binary file picking is not yet a first-class renderer control.',
   'patternProperties / JSON Schema conditionals, webhooks, callbacks and XML metadata are retained or partially modeled but are not complete first-class interactive surfaces.',
   'API Client scripts are trusted local JavaScript, not a security sandbox. Persisted workspace secrets are stored as entered in the browser origin.',
-  'environment template expansion is one pass; request chaining, collection variables, cookie APIs and external script imports remain future workspace layers.',
+  'template expansion is one pass; request chaining (flex.sendRequest), cookie scripting APIs and external package imports remain future scripting layers.',
   'Swagger/OpenAPI 2.0 is not accepted; integrations should generate OpenAPI 3.x.',
 ];
 
@@ -100,10 +104,10 @@ export function FlexDocFeatureSurface() {
     <section className='border-y border-border bg-card/35 px-4 py-16 sm:py-24'>
       <div className='container mx-auto max-w-6xl'>
         <div className='max-w-3xl'>
-          <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>2.3 product surface</div>
+          <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>2.3 published surface</div>
           <h2 className='mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>One request model, from reference docs to a local API workspace.</h2>
           <p className='mt-4 text-base leading-7 text-foreground/62'>
-            FlexDoc 2.3 keeps the tested OpenAPI/request semantics from the renderer while closing the framework-coverage stack and growing the API Client into a browser-local workspace with reusable requests, environments, scripts, tests and history.
+            FlexDoc 2.3 keeps the tested OpenAPI/request semantics from the renderer, closes the framework-coverage stack, and ships the API Client as a browser-local workspace with nested collections, layered variables, hierarchical auth, OAuth grants, scripts, tests and contextual history.
           </p>
         </div>
 
