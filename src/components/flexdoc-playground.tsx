@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowLeft, FileJson, RefreshCw, UploadCloud, Workflow } from 'lucide-react';
+import Link from 'next/link';
+import { FileJson, RefreshCw, UploadCloud, Workflow } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { ChangeEvent, DragEvent, useCallback, useEffect, useState } from 'react';
 import type { OpenAPISpec } from '@prauga/flexdoc-client';
@@ -13,7 +14,7 @@ export function FlexDocPlayground() {
   const isDark = mounted && resolvedTheme === 'dark';
   const initialSpec = showcaseSpec as unknown as OpenAPISpec;
   const [spec, setSpec] = useState<OpenAPISpec>(initialSpec);
-  const [fileName, setFileName] = useState('FlexDoc 2.3 full-surface showcase');
+  const [fileName, setFileName] = useState('FlexDoc 2.8 full-surface showcase');
   const [error, setError] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,21 +51,17 @@ export function FlexDocPlayground() {
 
   const reset = () => {
     setSpec(initialSpec);
-    setFileName('FlexDoc 2.3 full-surface showcase');
+    setFileName('FlexDoc 2.8 full-surface showcase');
     setError(null);
   };
 
   return (
     <div className='min-h-screen'>
       <div className='container mx-auto max-w-[1500px] px-4 py-6 sm:py-10'>
-        <a href='/flexdoc' className='mb-6 inline-flex items-center gap-2 text-sm text-blue-600 hover:underline dark:text-blue-300'>
-          <ArrowLeft size={16} /> Back to FlexDoc
-        </a>
-
         <div className='mb-7 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end'>
           <div>
             <div className='mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300'>
-              <UploadCloud size={14} /> Your spec, rendered locally for FlexDoc 2.3
+              <UploadCloud size={14} /> Your spec, rendered locally for FlexDoc 2.8
             </div>
             <h1 className='text-2xl font-semibold tracking-[-0.03em] sm:text-4xl'>Try the complete FlexDoc workflow with your OpenAPI document</h1>
             <p className='mt-3 max-w-3xl text-sm leading-6 text-foreground/62 sm:text-base'>
@@ -88,9 +85,9 @@ export function FlexDocPlayground() {
             <button onClick={reset} className='inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 py-3 text-sm font-semibold transition hover:border-blue-500/30'>
               <RefreshCw size={16} /> Reset showcase
             </button>
-            <a href='/flexdoc/client' className='inline-flex items-center justify-center gap-2 rounded-xl border border-violet-500/25 bg-violet-500/5 px-4 py-3 text-sm font-semibold text-violet-700 transition hover:bg-violet-500/10 dark:text-violet-300'>
+            <Link href='/flexdoc/client' className='inline-flex items-center justify-center gap-2 rounded-xl border border-violet-500/25 bg-violet-500/5 px-4 py-3 text-sm font-semibold text-violet-700 transition hover:bg-violet-500/10 dark:text-violet-300'>
               <Workflow size={16} /> API Client
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -106,7 +103,7 @@ export function FlexDocPlayground() {
               <FileJson size={16} className='shrink-0 text-blue-600 dark:text-blue-300' />
               <span className='truncate'>{fileName}</span>
             </div>
-            <span className='text-xs text-foreground/45'>FlexDoc 2.3 published surface · client 2.3.0 · {isDark ? 'dark' : 'light'}</span>
+            <span className='text-xs text-foreground/45'>FlexDoc 2.8 published surface · client 2.8.0 · {isDark ? 'dark' : 'light'}</span>
           </div>
           <div className='h-[68dvh] min-h-[500px] max-h-[620px] min-w-0 overflow-auto sm:h-[74dvh] sm:min-h-[620px] sm:max-h-[760px] lg:h-[800px] lg:max-h-none'>
             <FlexDocClientWrapper theme={isDark ? 'dark' : 'light'} spec={spec} title={fileName} />

@@ -33,7 +33,7 @@ export default function About() {
             <div className='mt-6 space-y-4 text-base leading-7 text-foreground/68 sm:text-lg'>
               <p>I&apos;m a Senior Software Engineer at Epsilon in Bengaluru, working primarily on backend and ad-tech systems, while also serving as Co-founder & CTO at Prauga. I have 6+ years of experience across backend engineering, cloud infrastructure, distributed systems, mobile products and developer tooling.</p>
               <p>Go is the language I reach for most often, but my career has been intentionally broad: Kafka and high-throughput consumers, Kubernetes and cloud platforms, Java services, React/Angular applications, Flutter products, databases from PostgreSQL to HBase, and blockchain infrastructure with Hyperledger Fabric.</p>
-              <p>My current open-source focus is <strong className='text-foreground'>FlexDoc</strong>, a self-hosted OpenAPI documentation renderer and API explorer. FlexDoc 2.3 keeps one canonical renderer and request model across browser/Node integrations, .NET, JVM frameworks, Python, PHP, Ruby, Go, Rust, Elixir and static distribution.</p>
+              <p>My current open-source focus is <strong className='text-foreground'>FlexDoc</strong>, a self-hosted OpenAPI documentation renderer and API explorer. FlexDoc 2.8 keeps one canonical renderer and request model across browser/Node integrations, .NET, JVM frameworks, Python, PHP, Ruby, Go, Rust, Elixir and static distribution.</p>
             </div>
           </div>
         </section>
