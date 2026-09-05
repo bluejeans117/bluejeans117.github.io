@@ -25,7 +25,7 @@ const experience = [
     highlights: [
       'Lead product and technology decisions across backend, mobile, cloud and infrastructure work.',
       'Built and explored products spanning developer tooling, collaborative applications and Linux/Android platform work.',
-      'Created FlexDoc as an open-source OpenAPI documentation renderer and API exploration workspace; FlexDoc 2.3 uses one canonical renderer contract across browser/Node and a broad cross-language adapter stack.',
+      'Created FlexDoc as an open-source OpenAPI documentation renderer and API exploration workspace; FlexDoc 2.8 uses one canonical renderer contract across browser/Node and a broad cross-language adapter stack.',
     ],
   },
   {

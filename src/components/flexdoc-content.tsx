@@ -40,6 +40,12 @@ const features = [
       'Snapshot the built OpenAPI request into an editable HTTP client with method, URL, query, headers, auth, body, custom servers and response inspection.',
   },
   {
+    icon: Package,
+    title: 'Postman import, canonically',
+    description:
+      'Import Postman Collection v2.1 and environment exports into native FlexDoc collections, folders, variables, auth and scripts with explicit compatibility warnings.',
+  },
+  {
     icon: Layers3,
     title: 'One canonical renderer',
     description:
@@ -73,7 +79,7 @@ const features = [
 
 const details = [
   'API key, Basic and Bearer auth plus OAuth/OpenID tokens; workspace auth inheritance and browser OAuth grants',
-  'Local API Client workspace with nested folders, collection/environment variables, inherited auth, scripts, tests and contextual history',
+  'Local API Client workspace with Postman import, nested folders, collection/environment variables, inherited auth, scripts, persisted tests and contextual history',
   'JSON, form-urlencoded and multipart request bodies',
   'deepObject, matrix, label, pipe/space-delimited and explode parameter semantics',
   'light/dark themes plus typed renderer configuration',
@@ -91,13 +97,13 @@ export function FlexDocContent() {
         <div className='container mx-auto max-w-6xl'>
           <div className='mx-auto max-w-4xl text-left sm:text-center'>
             <div className='mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-600 dark:text-blue-300'>
-              <Sparkles size={15} /> FlexDoc 2.3 · one renderer across the stack
+              <Sparkles size={15} /> FlexDoc 2.8 · one renderer across the stack
             </div>
             <h1 className='text-pretty text-[2.4rem] font-semibold leading-[1.04] tracking-[-0.05em] sm:text-balance sm:text-6xl md:text-7xl'>
               Your OpenAPI spec should be more than a static reference.
             </h1>
             <p className='mx-auto mt-6 max-w-3xl text-balance text-base leading-7 text-foreground/65 sm:mt-7 sm:text-xl sm:leading-8'>
-              FlexDoc is Prauga's open-source, self-hosted OpenAPI documentation renderer, Try It explorer and local API workspace. The 2.3 milestone closes broad framework coverage while keeping one canonical renderer and request model across docs, execution, API Client handoff, saved workspaces and generated code.
+              FlexDoc is Prauga's open-source, self-hosted OpenAPI documentation renderer, Try It explorer and local API workspace. The 2.8 milestone closes broad framework coverage while keeping one canonical renderer and request model across docs, execution, API Client handoff, saved workspaces and generated code.
             </p>
             <div className='mt-8 grid grid-cols-2 gap-2.5 sm:mt-9 sm:flex sm:justify-center sm:gap-3'>
               <Link
@@ -132,7 +138,7 @@ export function FlexDocContent() {
           <div className='mx-auto mt-16 grid max-w-4xl gap-3 sm:grid-cols-3'>
             {[
               ['OpenAPI', '3.0 + 3.1'],
-              ['Product milestone', '2.3.0'],
+              ['Product milestone', '2.8.0'],
               ['Runtime CDN', 'None required'],
             ].map(([label, value]) => (
               <div key={label} className='rounded-2xl border border-border bg-card/70 p-5 text-center backdrop-blur'>
@@ -150,7 +156,7 @@ export function FlexDocContent() {
             <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>Install</div>
             <h2 className='mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>Pick your framework. Get the exact setup.</h2>
             <p className='mt-4 text-base leading-7 text-foreground/62'>
-              FlexDoc 2.3 is a product milestone, not a forced package-version lockstep. Choose the framework you already run and get the independently versioned package, install command and minimal native integration for that stack.
+              FlexDoc 2.8 is a product milestone, not a forced package-version lockstep. Choose the framework you already run and get the independently versioned package, install command and minimal native integration for that stack.
             </p>
           </div>
           <FlexDocInstallSelector />
@@ -207,13 +213,13 @@ export function FlexDocContent() {
         <div className='container mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-center'>
           <div className='rounded-3xl border border-violet-500/20 bg-violet-500/5 p-7'>
             <div className='text-xs font-semibold uppercase tracking-[0.18em] text-violet-600 dark:text-violet-300'>API Client workspace</div>
-            <h3 className='mt-3 text-2xl font-semibold tracking-tight'>The complete local workspace ships in 2.3.</h3>
-            <p className='mt-3 text-sm leading-6 text-foreground/62'>The published workspace layers collections, arbitrarily nested folders, collection and environment variables, hierarchical auth with OAuth grants, trusted pre-request scripts, response tests and contextual history around the same canonical HTTP editor used by Try It.</p>
+            <h3 className='mt-3 text-2xl font-semibold tracking-tight'>The complete local workspace ships in 2.8.</h3>
+            <p className='mt-3 text-sm leading-6 text-foreground/62'>The published workspace layers collections, arbitrarily nested folders, collection and environment variables, hierarchical auth with OAuth grants, trusted scripts, persisted tests/history and Postman Collection v2.1/environment import around the same canonical HTTP editor used by Try It.</p>
             <Link href='/flexdoc/client' className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet-700 hover:underline dark:text-violet-300'>Open API Client workspace <ArrowRight size={14} /></Link>
           </div>
           <figure className='overflow-hidden rounded-3xl border border-border bg-card shadow-xl shadow-black/10'>
-            <img src='/img/flexdoc/showcase-api-client-light.jpg' alt='FlexDoc 2.3 API Client workspace in light mode' className='block h-auto w-full dark:hidden' loading='lazy' />
-            <img src='/img/flexdoc/showcase-api-client-dark.jpg' alt='FlexDoc 2.3 API Client workspace in dark mode' className='hidden h-auto w-full dark:block' loading='lazy' />
+            <img src='/img/flexdoc/showcase-api-client-light.jpg' alt='FlexDoc 2.8 API Client workspace in light mode' className='block h-auto w-full dark:hidden' loading='lazy' />
+            <img src='/img/flexdoc/showcase-api-client-dark.jpg' alt='FlexDoc 2.8 API Client workspace in dark mode' className='hidden h-auto w-full dark:block' loading='lazy' />
           </figure>
         </div>
       </section>
@@ -226,7 +232,7 @@ export function FlexDocContent() {
               The renderer grew into an API exploration engine.
             </h2>
             <p className='mt-4 text-base leading-7 text-foreground/62'>
-              FlexDoc 2.3 turns the API Client into a reusable local workspace and closes the framework-coverage stack. The same renderer contract now spans React and Node, ASP.NET Core, the JVM ecosystem, Python ASGI/WSGI, PHP, Ruby, Go, Rust and Elixir, plus CLI/static distribution.
+              FlexDoc 2.8 is the coordinated catch-up release for the API Client: nested workspaces, layered variables, inherited auth/OAuth, scripting, persisted tests/history, canonical Try It handoff and Postman import now ship together. The same renderer contract still spans React/Node and every supported native adapter without runtime CDN or hosted-service requirements.
             </p>
           </div>
 
@@ -332,7 +338,7 @@ export function FlexDocContent() {
         <div className='container mx-auto max-w-4xl text-center'>
           <h2 className='text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>Open the spec. Explore it. Call it.</h2>
           <p className='mx-auto mt-4 max-w-2xl text-base leading-7 text-foreground/62'>
-            FlexDoc 2.3 is open source under AGPL-3.0-or-later. Use the live demo, use the install selector above, or inspect the architecture on GitHub.
+            FlexDoc 2.8 is open source under AGPL-3.0-or-later. Use the live demo, use the install selector above, or inspect the architecture on GitHub.
           </p>
           <div className='mt-8 flex flex-col justify-center gap-3 sm:flex-row'>
             <Link href='/flexdoc/demo' className='inline-flex min-w-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-3 py-3 text-xs sm:rounded-full sm:px-6 sm:text-sm font-semibold text-white transition hover:bg-blue-500'>

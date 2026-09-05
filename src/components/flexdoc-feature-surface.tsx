@@ -70,6 +70,7 @@ const coverage = [
       'trusted pre-request JavaScript with run-local, collection and environment variables',
       'response tests/assertions plus captured script console output',
       'request history with resolved execution metadata, test results/logs, collection/folder identity and raw-template replay',
+      'Postman Collection v2.1 and environment import into the canonical workspace with explicit compatibility warnings',
       'browser-local IndexedDB persistence with configurable workspace keys',
     ],
   },
@@ -94,6 +95,7 @@ const constraints = [
   'deepObject is first-class for flat object properties; nested deep-object expansion is not recursive.',
   'multipart requests use FormData, but binary file picking is not yet a first-class renderer control.',
   'patternProperties / JSON Schema conditionals, webhooks, callbacks and XML metadata are retained or partially modeled but are not complete first-class interactive surfaces.',
+  'Postman multipart/file fields cannot recreate browser File objects; they import as reviewable text with compatibility warnings, and unsupported Postman sandbox/auth behavior is never silently treated as equivalent.',
   'API Client scripts are trusted local JavaScript, not a security sandbox. Persisted workspace secrets are stored as entered in the browser origin.',
   'template expansion is one pass; request chaining (flex.sendRequest), cookie scripting APIs and external package imports remain future scripting layers.',
   'Swagger/OpenAPI 2.0 is not accepted; integrations should generate OpenAPI 3.x.',
@@ -104,10 +106,10 @@ export function FlexDocFeatureSurface() {
     <section className='border-y border-border bg-card/35 px-4 py-16 sm:py-24'>
       <div className='container mx-auto max-w-6xl'>
         <div className='max-w-3xl'>
-          <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>2.3 published surface</div>
+          <div className='text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300'>2.8 published surface</div>
           <h2 className='mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>One request model, from reference docs to a local API workspace.</h2>
           <p className='mt-4 text-base leading-7 text-foreground/62'>
-            FlexDoc 2.3 keeps the tested OpenAPI/request semantics from the renderer, closes the framework-coverage stack, and ships the API Client as a browser-local workspace with nested collections, layered variables, hierarchical auth, OAuth grants, scripts, tests and contextual history.
+            FlexDoc 2.8 carries the complete 2.4–2.7 workspace work into one coordinated release and adds Postman import: nested collections, layered variables, hierarchical auth, OAuth grants, scripts, persisted tests/history, canonical Try It handoff and compatibility-aware migration all use the same request model.
           </p>
         </div>
 
@@ -136,7 +138,7 @@ export function FlexDocFeatureSurface() {
           </div>
           <div className='mt-6 overflow-hidden rounded-2xl border border-border bg-background/70'>
             <div className='hidden grid-cols-[0.65fr_1.15fr_1.6fr] gap-3 border-b border-border bg-card px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-foreground/45 sm:grid'>
-              <span>Runtime</span><span>Native boundary</span><span>2.3 coverage</span>
+              <span>Runtime</span><span>Native boundary</span><span>2.8 coverage</span>
             </div>
             {integrations.map(([runtime, boundary, frameworks]) => (
               <div key={runtime} className='grid grid-cols-1 gap-1 border-b border-border/70 px-4 py-4 text-sm last:border-b-0 sm:grid-cols-[0.65fr_1.15fr_1.6fr] sm:gap-3'>

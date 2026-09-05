@@ -66,7 +66,7 @@ export default function Home() {
                 I&apos;m Vishnu Rajesh, a Bengaluru-based software engineer with 6+
                 years across backend engineering, distributed systems, cloud,
                 product development and open source. My current open-source focus
-                is FlexDoc 2.3.
+                is FlexDoc 2.8.
               </p>
 
               <div className='mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row'>
@@ -74,7 +74,7 @@ export default function Home() {
                   href='/flexdoc'
                   className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-lg transition hover:-translate-y-0.5 hover:opacity-90 sm:w-auto'
                 >
-                  Explore FlexDoc 2.3 <ArrowRight size={16} />
+                  Explore FlexDoc 2.8 <ArrowRight size={16} />
                 </Link>
                 <Link
                   href='/experience'
@@ -133,7 +133,7 @@ export default function Home() {
                     Current build
                   </div>
                   <h2 className='text-2xl font-semibold tracking-tight'>
-                    FlexDoc 2.3 — OpenAPI docs and a local API workspace
+                    FlexDoc 2.8 — OpenAPI docs and a local API workspace
                   </h2>
                   <p className='mt-2 max-w-2xl text-sm leading-6 text-foreground/60'>
                     One canonical renderer, OpenAPI 3.0/3.1, Try It, generated code, a local API workspace and integrations across browser, Node, .NET, JVM, Python, PHP, Ruby, Go, Rust and Elixir — self-hosted, with no account or runtime CDN.

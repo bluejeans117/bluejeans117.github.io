@@ -1,20 +1,12 @@
 import { Metadata } from 'next';
-import { Nav } from '@/components/nav';
 import { FlexDocApiClientDemo } from '@/components/flexdoc-api-client-demo';
 
 export const metadata: Metadata = {
-  title: 'FlexDoc 2.3 API Client | Local Collections, Auth, Scripts & History',
+  title: 'FlexDoc 2.8 API Client | Postman Import, Collections, Auth & Scripts',
   description:
-    'Try the published FlexDoc 2.3 API Client workspace with nested collections, collection and environment variables, inherited auth and OAuth grants, scripts, tests, history and local persistence.',
+    'Try the FlexDoc 2.8 standalone API workspace with Postman Collection/environment import, nested collections, variables, inherited auth and OAuth, scripts, persisted tests/history and local IndexedDB state.',
 };
 
 export default function FlexDocApiClientPage() {
-  return (
-    <div className='flex min-h-screen flex-col'>
-      <Nav />
-      <main className='flex-1'>
-        <FlexDocApiClientDemo />
-      </main>
-    </div>
-  );
+  return <FlexDocApiClientDemo />;
 }

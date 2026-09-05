@@ -80,6 +80,30 @@
     background-clip: text;
     color: transparent;
   }
+
+  /* Keep portfolio navigation responsive behavior independent from FlexDoc's
+     bundled Tailwind utility sheet, which is loaded on renderer/client routes. */
+  .portfolio-primary-nav-desktop {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .portfolio-primary-nav-mobile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-primary-nav-desktop {
+      display: flex;
+    }
+
+    .portfolio-primary-nav-mobile {
+      display: none;
+    }
+  }
 }
 
 @layer utilities {
