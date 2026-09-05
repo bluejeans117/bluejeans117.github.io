@@ -71,7 +71,7 @@ export default function Home() {
 
               <div className='mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row'>
                 <Link
-                  href='/flexdoc'
+                  href='https://flexdoc.prauga.com'
                   className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-lg transition hover:-translate-y-0.5 hover:opacity-90 sm:w-auto'
                 >
                   Explore FlexDoc 2.8 <ArrowRight size={16} />
@@ -140,7 +140,7 @@ export default function Home() {
                   </p>
                 </div>
                 <Link
-                  href='/flexdoc'
+                  href='https://flexdoc.prauga.com'
                   className='inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent transition hover:bg-accent/15'
                 >
                   See what changed <ArrowRight size={15} />

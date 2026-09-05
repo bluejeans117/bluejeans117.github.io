@@ -81,8 +81,7 @@
     color: transparent;
   }
 
-  /* Keep portfolio navigation responsive behavior independent from FlexDoc's
-     bundled Tailwind utility sheet, which is loaded on renderer/client routes. */
+  /* Keep portfolio navigation responsive behavior explicit across desktop and mobile. */
   .portfolio-primary-nav-desktop {
     display: none;
     align-items: center;

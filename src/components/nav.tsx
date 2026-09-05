@@ -3,14 +3,14 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ThemeToggle } from './theme-toggle';
 
 const links = [
   { href: '/about', label: 'About' },
   { href: '/experience', label: 'Experience' },
   { href: '/work', label: 'Projects' },
-  { href: '/flexdoc', label: 'FlexDoc' },
+  { href: 'https://flexdoc.prauga.com', label: 'FlexDoc', external: true },
   { href: '/contact', label: 'Contact' },
   { href: 'https://blog.realogs.in/', label: 'Blog', external: true },
 ];
@@ -20,33 +20,12 @@ function normalizePathname(pathname: string | null): string {
   return pathname.replace(/\/+$/, '');
 }
 
-function isLinkActive(pathname: string, href: string): boolean {
-  if (href === '/flexdoc') return pathname === '/flexdoc' || pathname.startsWith('/flexdoc/');
-  return pathname === href;
-}
-
 export function Nav() {
   const pathname = usePathname();
   const currentPathname = normalizePathname(pathname);
-  const previousPathname = useRef(pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const previous = previousPathname.current;
-    previousPathname.current = pathname;
-
-    // FlexDoc's package stylesheet is loaded only by the renderer/client surfaces.
-    // Next.js can retain those global rules after a client-side route change, so
-    // force a clean document only when leaving one of those surfaces. The shared
-    // FlexDoc product shell itself remains available across every tab.
-    const rendererRoutes = ['/flexdoc/demo', '/flexdoc/playground', '/flexdoc/client'];
-    const wasRendererRoute = rendererRoutes.some((route) => previous?.startsWith(route));
-    const isRendererRoute = rendererRoutes.some((route) => pathname?.startsWith(route));
-    if (wasRendererRoute && !isRendererRoute) {
-      window.location.reload();
-      return;
-    }
-
     setIsMenuOpen(false);
   }, [pathname]);
 
@@ -74,10 +53,10 @@ export function Nav() {
         <div className='portfolio-primary-nav-desktop' data-portfolio-primary-desktop>
           <nav className='mr-3 flex items-center rounded-full border border-border bg-card/60 p-1 shadow-sm'>
             {links.map((link) => {
-              const active = !link.external && isLinkActive(currentPathname, link.href);
+              const active = !link.external && currentPathname === link.href;
               const className = `rounded-full px-3 py-1.5 text-sm transition ${active ? 'bg-foreground text-background shadow-sm' : 'text-foreground/58 hover:text-foreground'}`;
               return link.external ? (
-                <a key={link.href} href={link.href} target='_blank' rel='noopener noreferrer' className={className}>{link.label}</a>
+                <a key={link.href} href={link.href} className={className}>{link.label}</a>
               ) : (
                 <Link key={link.href} href={link.href} aria-current={active ? 'page' : undefined} className={className}>{link.label}</Link>
               );
@@ -105,10 +84,10 @@ export function Nav() {
           <nav className='container mx-auto grid max-w-lg gap-2'>
             <Link href='/' aria-current={currentPathname === '/' ? 'page' : undefined} className={`rounded-xl px-4 py-3 text-base font-medium ${currentPathname === '/' ? 'bg-accent/10 text-accent' : 'text-foreground/70'}`}>Home</Link>
             {links.map((link) => {
-              const active = !link.external && isLinkActive(currentPathname, link.href);
+              const active = !link.external && currentPathname === link.href;
               const className = `rounded-xl px-4 py-3 text-base font-medium ${active ? 'bg-accent/10 text-accent' : 'text-foreground/70'}`;
               return link.external ? (
-                <a key={link.href} href={link.href} target='_blank' rel='noopener noreferrer' className={className}>{link.label} ↗</a>
+                <a key={link.href} href={link.href} className={className}>{link.label} ↗</a>
               ) : (
                 <Link key={link.href} href={link.href} aria-current={active ? 'page' : undefined} className={className}>{link.label}</Link>
               );
@@ -116,7 +95,7 @@ export function Nav() {
           </nav>
           <div className='container mx-auto mt-6 max-w-lg rounded-2xl border border-blue-500/15 bg-blue-500/5 p-4'>
             <div className='text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300'>Now shipping</div>
-            <Link href='/flexdoc' className='mt-2 block font-semibold'>FlexDoc 2.8 →</Link>
+            <a href='https://flexdoc.prauga.com' className='mt-2 block font-semibold'>FlexDoc 2.8 →</a>
           </div>
         </div>
       )}

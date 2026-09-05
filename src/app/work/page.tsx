@@ -8,7 +8,7 @@ const projects = [
     description:
       "Prauga's self-hosted OpenAPI documentation renderer and API exploration workspace. FlexDoc 2.8 spans React/Node, ASP.NET Core, JVM frameworks, Python, PHP, Ruby, Go, Rust and Elixir around one renderer contract, request engine and Try It → API Client workflow.",
     tech: ['TypeScript', 'React', 'OpenAPI', 'CLI', 'Polyglot adapters'],
-    href: '/flexdoc',
+    href: 'https://flexdoc.prauga.com',
     github: 'https://github.com/prauga/flexdoc',
     icon: Layers3,
   },
