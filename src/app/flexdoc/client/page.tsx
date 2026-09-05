@@ -3,9 +3,9 @@ import { Nav } from '@/components/nav';
 import { FlexDocApiClientDemo } from '@/components/flexdoc-api-client-demo';
 
 export const metadata: Metadata = {
-  title: 'FlexDoc 2.3 API Client | Canonical HTTP Request Editor',
+  title: 'FlexDoc 2.3 API Client | Local Collections, Auth, Scripts & History',
   description:
-    'Try the published FlexDoc HTTP request editor used by the 2.3 product surface, and explore the current 2.3 source direction for collections, environments, scripts, tests and history.',
+    'Try the published FlexDoc 2.3 API Client workspace with nested collections, collection and environment variables, inherited auth and OAuth grants, scripts, tests, history and local persistence.',
 };
 
 export default function FlexDocApiClientPage() {

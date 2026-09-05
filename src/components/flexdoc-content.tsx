@@ -72,8 +72,8 @@ const features = [
 ];
 
 const details = [
-  'API key, Basic, Bearer and OAuth2/OpenID bearer request authentication',
-  '2.3 workspace source adds collections, environments, variables, scripts, tests and history around the API Client',
+  'API key, Basic and Bearer auth plus OAuth/OpenID tokens; workspace auth inheritance and browser OAuth grants',
+  'Local API Client workspace with nested folders, collection/environment variables, inherited auth, scripts, tests and contextual history',
   'JSON, form-urlencoded and multipart request bodies',
   'deepObject, matrix, label, pipe/space-delimited and explode parameter semantics',
   'light/dark themes plus typed renderer configuration',
@@ -206,14 +206,14 @@ export function FlexDocContent() {
       <section className='border-t border-border px-4 pb-20 sm:pb-24'>
         <div className='container mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-center'>
           <div className='rounded-3xl border border-violet-500/20 bg-violet-500/5 p-7'>
-            <div className='text-xs font-semibold uppercase tracking-[0.18em] text-violet-600 dark:text-violet-300'>API Client foundation</div>
-            <h3 className='mt-3 text-2xl font-semibold tracking-tight'>The published editor is the base of the 2.3 workspace.</h3>
-            <p className='mt-3 text-sm leading-6 text-foreground/62'>The live portfolio screenshot uses the published low-level API Client. Current 2.3 source layers collections, folders, named environments, variables, trusted pre-request scripts, response tests and history around that same canonical editor without vendoring unpublished npm code here.</p>
-            <Link href='/flexdoc/client' className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet-700 hover:underline dark:text-violet-300'>Open published API client <ArrowRight size={14} /></Link>
+            <div className='text-xs font-semibold uppercase tracking-[0.18em] text-violet-600 dark:text-violet-300'>API Client workspace</div>
+            <h3 className='mt-3 text-2xl font-semibold tracking-tight'>The complete local workspace ships in 2.3.</h3>
+            <p className='mt-3 text-sm leading-6 text-foreground/62'>The published workspace layers collections, arbitrarily nested folders, collection and environment variables, hierarchical auth with OAuth grants, trusted pre-request scripts, response tests and contextual history around the same canonical HTTP editor used by Try It.</p>
+            <Link href='/flexdoc/client' className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet-700 hover:underline dark:text-violet-300'>Open API Client workspace <ArrowRight size={14} /></Link>
           </div>
           <figure className='overflow-hidden rounded-3xl border border-border bg-card shadow-xl shadow-black/10'>
-            <img src='/img/flexdoc/showcase-api-client-light.jpg' alt='FlexDoc published API Client in light mode' className='block h-auto w-full dark:hidden' loading='lazy' />
-            <img src='/img/flexdoc/showcase-api-client-dark.jpg' alt='FlexDoc published API Client in dark mode' className='hidden h-auto w-full dark:block' loading='lazy' />
+            <img src='/img/flexdoc/showcase-api-client-light.jpg' alt='FlexDoc 2.3 API Client workspace in light mode' className='block h-auto w-full dark:hidden' loading='lazy' />
+            <img src='/img/flexdoc/showcase-api-client-dark.jpg' alt='FlexDoc 2.3 API Client workspace in dark mode' className='hidden h-auto w-full dark:block' loading='lazy' />
           </figure>
         </div>
       </section>
@@ -321,7 +321,7 @@ export function FlexDocContent() {
               <div className='mb-4 inline-flex rounded-xl bg-blue-500/10 p-2.5 text-blue-600 dark:text-blue-300'><Sparkles size={20} /></div>
               <h2 className='text-2xl font-semibold tracking-tight'>API Client grew into a local workspace</h2>
               <p className='mt-3 text-sm leading-6 text-foreground/62'>
-                The browser workspace now persists collections, folders, saved requests, environments, scripts, response tests and request history locally. Try It still hands off the same canonical request, so workspace features build on request semantics instead of duplicating them.
+                The browser workspace persists collections, nested folders, saved requests, collection/environment variables, layered auth, scripts, response tests and contextual request history locally. Try It hands off a canonical session with request, server and supported authorization context so workspace features build on request semantics instead of duplicating them.
               </p>
             </div>
           </div>

@@ -70,7 +70,7 @@ function fullSurfaceOptions(theme: 'light' | 'dark', title: string): FlexDocRend
     customCss: '.flexdoc-root { --portfolio-flexdoc-surface: 2.3; }',
     hideDownloadButton: false,
     hideTopbar: false,
-    expandResponses: '200,201',
+    expand: 'minimal',
     defaultModelsExpandDepth: 2,
     showExtensions: true,
     showCommonExtensions: true,
